@@ -1,0 +1,59 @@
+.contacto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  background-color: #222222;
+  color: white;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 500px;
+
+}
+
+.submitButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #45a049;
+  }
+}
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #ffffff;
+
+}
+
+.input,
+.textarea { 
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+} 
+.input {
+  height: 40px;
+}
+
+.textarea {
+  height: 100px;
+  resize: vertical;
+  }
+
+.successMessage {
+  color: #4CAF50;
+}
