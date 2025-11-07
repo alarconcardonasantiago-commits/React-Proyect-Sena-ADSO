@@ -1,0 +1,27 @@
+.Container {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.Image {
+    width: 100%;
+    height: auto;
+}
+
+.Name {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.Description {
+    color: #555;
+}
+
+.Price {
+    color: #b12704;
+    font-weight: bold;
+}
