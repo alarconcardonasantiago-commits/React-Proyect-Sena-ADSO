@@ -5,6 +5,7 @@ import Home from './Pages/Home.jsx'
 import { Routes, Route } from "react-router-dom";
 import Contacto from './Pages/Contacto.jsx'
 import Productos from './Pages/Productos.jsx';
+import Administracion from './Pages/Administracion.jsx';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
             <Route path='/' element={<Home />}/>
             <Route path='/Contacto' element={<Contacto />}/>
             <Route path='/Productos' element={<Productos />}/>
+            <Route path='/Administracion' element={<Administracion />}/>
           </Routes>
       </main>
       <Footer className={styles.footer} />

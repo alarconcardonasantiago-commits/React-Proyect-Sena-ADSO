@@ -5,7 +5,7 @@ import styles from './Productos.module.css'
 
 const Productos = () => {
   const [productos, setProductos] = useState([])
-  const [isGrid, setIsGrid] = useState(true)
+  const [isGrid, setIsGrid] = useState(false)
   const [loading, setLoading] = useState(false)
   const [showSpinner, setShowSpinner] = useState(false)
   const [error, setError] = useState(null)
