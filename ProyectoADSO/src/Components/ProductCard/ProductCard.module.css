@@ -1,27 +1,97 @@
-.Container {
-    width: 300px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease;
+.card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  width: 100%;
+  max-width: 800px;
+  margin: 10px auto;
+  padding: 12px;
+  cursor: pointer;
 }
 
-.Image {
-    width: 100%;
-    height: auto;
+.card:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
-.Name {
-    font-weight: bold;
-    font-size: 1.2em;
+.imageWrapper {
+  flex: 0 0 160px;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.Description {
-    color: #555;
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.Price {
-    color: #b12704;
-    font-weight: bold;
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1rem;
+}
+
+.name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #007bff;
+  margin-top: 0.2rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.primary:hover {
+  background-color: #0056b3;
+}
+
+.secondary {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.secondary:hover {
+  background-color: #ddd;
 }
