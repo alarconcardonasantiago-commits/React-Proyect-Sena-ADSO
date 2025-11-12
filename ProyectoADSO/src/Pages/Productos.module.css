@@ -75,3 +75,42 @@
   align-items: center;
 }
 
+/* Overlay transparente para mostrar mientras carga */
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none; /* no bloquea clicks */
+}
+
+/* Animación del spinner */
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 4px solid #ddd;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Efecto visual leve cuando se actualiza */
+.loadingState {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}

@@ -2,17 +2,18 @@ import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 import Contacto from '../../Pages/Contacto'
 import Productos from '../../Pages/Productos'
+import Home from '../../Pages/Home'
 
 function Header() {
   return (
     <header className={styles.header}>
-      <h1 className={styles.logo}>Melodía Instrumental</h1>
+      <a href="/"className={styles.linkText}><h1 className={styles.logo}>Melodía Instrumental</h1></a>
       <nav className={styles.navbar}>
         <ul className={styles.menu}>
-          <Link to="/"><li className={styles.active}>Inicio</li></Link>
-          <Link to="/Productos"><li className={styles.active}>Productos</li></Link>
-          <Link to="/Contacto"><li className={styles.active}>Contacto</li></Link>
-          <Link to="/Administracion"><li className={styles.active}>Administración</li></Link>
+          <Link to="/" className={styles.linkText}><li className={styles.active}>Inicio</li></Link>
+          <Link to="/Productos" className={styles.linkText}><li className={styles.active}>Productos</li></Link>
+          <Link to="/Contacto" className={styles.linkText}><li className={styles.active}>Contacto</li></Link>
+          <Link to="/Administracion" className={styles.linkText}><li className={styles.active}>Administración</li></Link>
         </ul>
       </nav>
     </header>
