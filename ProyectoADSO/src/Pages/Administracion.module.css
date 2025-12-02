@@ -59,3 +59,16 @@ button:hover {
   color: #28a745;
   margin-top: 10px;
 }
+
+.linkText {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  list-style: none;
+}
+
+nav {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 15px;
+}
