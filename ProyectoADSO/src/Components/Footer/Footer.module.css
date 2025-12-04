@@ -1,26 +1,64 @@
 .footer {
     background-color: #181818;
-    
     color: white;
-    text-align: center;
-    padding: 1rem 0;
-    /* position: fixed; */
+    padding: 1.5rem 0; 
     width: 100%;
-    bottom: 0;
+    /* No usar position: fixed ni static */
 }
 
-.footer p {
-    margin: 0;
-    font-size: 0.9rem;
+/* Contenedor principal del contenido del footer, que será la GRID */
+.footerContent {
+    display: grid;
+    /* Crea 4 columnas de igual tamaño (1fr) */
+    grid-template-columns: repeat(4, 1fr); 
+    max-width: 1200px; /* Limita el ancho para centrar */
+    margin: 0 auto; /* Centra el contenido */
+    padding: 0 20px; /* Padding lateral */
+    gap: 30px; /* Espacio entre columnas */
 }
-/* 
-.loginForm {
+
+/* Estilos para cada columna */
+.col {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-top: 10px;
-    height: max-content;
-    margin-bottom: 25px; */
-    /* margin-top: 25px; */
-/* } */
+    /* Alineación de texto por defecto */
+    text-align: left; 
+}
+
+/* Estilos para los títulos de columna */
+.col h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #4a90e2; /* Un color de acento */
+}
+
+/* Estilos para el texto de las columnas (párrafos, spans, enlaces) */
+.col p, .col span, .col a {
+    margin: 3px 0;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #ccc; /* Gris claro para el texto */
+    line-height: 1.5;
+}
+
+/* Estilos para los enlaces */
+.col a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Estilos para pantallas más pequeñas (Responsive) */
+@media (max-width: 768px) {
+    .footerContent {
+        /* En pantallas medianas, cambia a 2 columnas */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footerContent {
+        /* En pantallas muy pequeñas, vuelve a 1 columna */
+        grid-template-columns: 1fr;
+    }
+}

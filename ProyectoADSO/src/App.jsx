@@ -24,29 +24,16 @@ function App() {
             <Route path='/' element={<Home />}/>
             <Route path='/Contacto' element={<Contacto />}/>
             <Route path='/Productos' element={<Productos />}/>
+
+            {/* Recordar como hacer anidamiento de rutas en ReactRouter con index este
+            lo que hace es que pone unas rutas dentro de otras en donde tengamos colocado todas nuestras rutas */}
             
-            {/* 🔴 CAMBIO IMPORTANTE AQUÍ: RUTAS ANIDADAS 
-                La ruta 'Administracion' ahora tiene etiqueta de apertura y cierre.
-                Dentro de ella van sus "hijos" que se verán en el <Outlet />.
-            */}
-            <Route path='/Administracion' element={<Administracion />}>
-                
-                {/* 'index' significa: Si entran a "/Administracion" pelado, 
-                   muéstrame el LoginForm por defecto.
-                */}
+            <Route path='/Administracion' element={<Administracion />}>            
                 <Route index element={<LoginForm />} />
-                
-                {/* Las rutas hijas (se suman a la del padre) */}
                 <Route path='LoginForm' element={<LoginForm />} />
-                <Route path='RegisterForm' element={<RegisterForm />} />
-                
+                <Route path='RegisterForm' element={<RegisterForm />} />                
             </Route>
 
-            {/* NOTA: Dejamos 'BuscarProducto' FUERA del anidamiento anterior.
-               ¿Por qué? Porque cuando el usuario entre aquí, NO queremos 
-               que vea las pestañas de Login/Register arriba. Queremos que vea
-               la pantalla de buscar producto limpia.
-            */}
             <Route path='/Administracion/BuscarProducto' element={<BuscarProducto />}/>
 
           </Routes>
