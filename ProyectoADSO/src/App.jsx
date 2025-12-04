@@ -5,10 +5,15 @@ import Home from './Pages/Home.jsx'
 import { Routes, Route } from "react-router-dom";
 import Contacto from './Pages/Contacto.jsx'
 import Productos from './Pages/Productos.jsx';
+
+// Importa el Layout (El esqueleto con los botones)
 import Administracion from './Pages/Administracion.jsx';
+
+// Importa los componentes refactoreados
+// Asegúrate de que la ruta de importación sea la correcta donde guardaste los archivos
+import LoginForm from './Components/LoginForm/LoginForm.jsx'; 
+import RegisterForm from './Components/RegisterForm/RegisterForm.jsx';
 import BuscarProducto from './Pages/AdministracionPages/BuscarProducto.jsx';
-// import Login from './Pages/AdministracionPages/Login.jsx';
-// import Register from './Pages/AdministracionPages/Register.jsx';
 
 function App() {
   return (
@@ -19,10 +24,31 @@ function App() {
             <Route path='/' element={<Home />}/>
             <Route path='/Contacto' element={<Contacto />}/>
             <Route path='/Productos' element={<Productos />}/>
-            <Route path='/Administracion' element={<Administracion />}/>
+            
+            {/* 🔴 CAMBIO IMPORTANTE AQUÍ: RUTAS ANIDADAS 
+                La ruta 'Administracion' ahora tiene etiqueta de apertura y cierre.
+                Dentro de ella van sus "hijos" que se verán en el <Outlet />.
+            */}
+            <Route path='/Administracion' element={<Administracion />}>
+                
+                {/* 'index' significa: Si entran a "/Administracion" pelado, 
+                   muéstrame el LoginForm por defecto.
+                */}
+                <Route index element={<LoginForm />} />
+                
+                {/* Las rutas hijas (se suman a la del padre) */}
+                <Route path='LoginForm' element={<LoginForm />} />
+                <Route path='RegisterForm' element={<RegisterForm />} />
+                
+            </Route>
+
+            {/* NOTA: Dejamos 'BuscarProducto' FUERA del anidamiento anterior.
+               ¿Por qué? Porque cuando el usuario entre aquí, NO queremos 
+               que vea las pestañas de Login/Register arriba. Queremos que vea
+               la pantalla de buscar producto limpia.
+            */}
             <Route path='/Administracion/BuscarProducto' element={<BuscarProducto />}/>
-            {/* <Route path='/Administracion/Login' element={<Login />}/>
-            <Route path='/Administracion/Register' element={<Register />}/> */}
+
           </Routes>
       </main>
       <Footer className={styles.footer} />
@@ -31,4 +57,3 @@ function App() {
 }
 
 export default App
-

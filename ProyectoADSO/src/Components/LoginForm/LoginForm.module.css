@@ -1,0 +1,60 @@
+/* Heredamos la apariencia del contenedor principal (anteriormente .loginBox) */
+.formContainer {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 320px;
+  text-align: center;
+  margin-bottom: 100px;
+  /* Asegura que el título del formulario (h2) no sea blanco si está dentro */
+  color: #333; 
+}
+
+/* Estilos para agrupar etiqueta/input */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 15px;
+  text-align: left; /* Alineamos las etiquetas a la izquierda */
+}
+
+/* Estilo para los inputs de texto */
+.inputGroup input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  box-sizing: border-box; /* Incluye padding y border en el ancho total */
+}
+
+/* Estilo para el botón de envío (anteriormente 'button') */
+.submitBtn {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%; /* Ocupa todo el ancho */
+  margin-top: 20px;
+}
+
+.submitBtn:hover {
+  background-color: #357ABD;
+}
+
+/* Mensajes */
+.error {
+  color: #d9534f;
+  margin-top: 10px;
+}
+
+.success {
+  color: #28a745;
+  margin-top: 10px;
+}

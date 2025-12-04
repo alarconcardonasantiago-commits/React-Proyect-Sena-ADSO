@@ -1,107 +1,47 @@
-import React, { useState } from 'react'
-import styles from './Administracion.module.css'
-import * as ReactRouter from 'react-router-dom';
-import { Route } from 'react-router-dom';
-import { Routes } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { BrowserRouter , Outlet } from 'react-router-dom';
-
+import React from 'react';
+import styles from './Administracion.module.css';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const Administracion = () => {
-  const [correo, setCorreo] = useState('')
-  const [contraseña, setContraseña] = useState('')
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [delay, setDelay] = useState(0)
-  const navigate = ReactRouter.useNavigate();
+  const location = useLocation(); // Hook para saber en qué URL estamos
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError(null)
-    setSuccess(false)
-    setLoading(true)
-    setDelay(500);
-
-    try {
-      const res = await fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo, contraseña })
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) throw new Error(data.error || 'Error al iniciar sesión')
-
-      // ✅ Guardamos el token en localStorage
-      localStorage.setItem('token', data.token)
-      localStorage.setItem('usuario', JSON.stringify(data.usuario))
-
-      setSuccess(true)
-      setCorreo('')
-      setContraseña('')
-
-      console.log('✅ Token guardado:', data.token)
-      console.log('👤 Usuario:', data.usuario)
-        if (data.token === undefined) {
-        throw new Error('Error al iniciar sesión')
-      }
-      else {
-        setTimeout(() => {
-          navigate('/Administracion/BuscarProducto')
-        }, delay);
-      }
-      
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
-    }
-  }
+  // Función auxiliar para saber si el link está activo (para estilos CSS)
+  const isActive = (path) => location.pathname.includes(path);
 
   return (
-    <>
     <div className={styles.page}>
-      <h1>Panel de Administración</h1>
-
-      {/* <div>
+      <h1>Panel de Administración</h1>    
+      
+      <div>
         <nav>
-          <Link to="/Administracion/Login" className={styles.linkText}><li className={styles.Login}>Login</li></Link>
-          <Link to="/Administracion/Register" className={styles.linkText}><li className={styles.Register}>Registrar</li></Link>
-          <Outlet />
+           {/* Usa una lista UL para mejor semántica */}
+           <ul style={{ display: 'flex', listStyle: 'none', padding: 0, gap: '20px' }}>
+              
+              <Link to="/Administracion/LoginForm" className={styles.linkText}>
+                <li className={`${styles.Login} ${isActive('LoginForm') ? styles.active : ''}`}>
+                  Login
+                </li>
+              </Link>
+              
+              <Link to="/Administracion/RegisterForm" className={styles.linkText}>
+                <li className={`${styles.Register} ${isActive('RegisterForm') ? styles.active : ''}`}>
+                  Registrar
+                </li>
+              </Link>
+
+           </ul>
         </nav>
-      </div> */}
+        <hr className={styles.separator}/>
+      </div> 
+      
+      {/* AQUÍ ES LA MAGIA: 
+         El Outlet renderizará <LoginForm /> o <RegisterForm /> 
+         dependiendo de la URL, sin que tengas que poner condicionales.
+      */}
+      <Outlet /> 
 
-      <div className={styles.loginBox}>
-        <h2>Iniciar Sesión</h2>
-
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            type="email"
-            placeholder="Correo electrónico"
-            value={correo}
-            onChange={(e) => setCorreo(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={contraseña}
-            onChange={(e) => setContraseña(e.target.value)}
-            required
-          />
-          <button type="submit" disabled={loading}>
-            {loading ? 'Ingresando...' : 'Entrar'}
-          </button>
-        </form>
-
-        {error && <p className={styles.error}>❌ {error}</p>}
-        {success && <p className={styles.success}>✅ Inicio de sesión exitoso</p>}
-      </div>
     </div>
-    </>
   )
 }
 
-export default Administracion
+export default Administracion;

@@ -8,58 +8,18 @@
 
 h1 {
   margin-bottom: 20px;
-  color: white;
+  color: white; /* Asumo que el fondo es oscuro */
 }
 
-.loginBox {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  width: 320px;
-  text-align: center;
-  margin-bottom: 100px;
+/* Estilo para los elementos de la navegación */
+nav {
+  margin-bottom: 20px;
+  /* Usamos flex y gap para separar los li */
+  display: flex; 
+  gap: 15px;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-input {
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-button:hover {
-  background-color: #357ABD;
-}
-
-.error {
-  color: #d9534f;
-  margin-top: 10px;
-}
-
-.success {
-  color: #28a745;
-  margin-top: 10px;
-}
-
+/* Estilo para el texto de Link */
 .linkText {
   text-decoration: none;
   color: white;
@@ -67,8 +27,28 @@ button:hover {
   list-style: none;
 }
 
-nav {
-  margin-bottom: 20px;
-  display: flex;
-  gap: 15px;
+/* Estilos de los LI/Botones dentro del NAV */
+.Login, .Register {
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.Login:hover, .Register:hover {
+  opacity: 0.8;
+}
+
+/* Estilo para el separador visual */
+.separator {
+  width: 100%;
+  border: 0;
+  height: 1px;
+  background-color: #ccc;
+  margin-top: -10px; /* Ajusta la posición de la línea */
+}
+
+/* Clase para el botón activo (la que usamos en Administracion.jsx) */
+.active {
+  border-bottom: 2px solid #4a90e2; /* Una línea azul debajo */
+  color: #4a90e2; /* Color del texto cuando está activo */
 }
