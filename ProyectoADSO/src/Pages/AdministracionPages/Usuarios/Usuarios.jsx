@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const EliminarProducto = () => {
+const Usuarios = () => {
     return (
         <div>
             
@@ -11,9 +11,9 @@ const EliminarProducto = () => {
 };
 
 
-EliminarProducto.propTypes = {
+Usuarios.propTypes = {
 
 };
 
 
-export default EliminarProducto;
+export default Usuarios;

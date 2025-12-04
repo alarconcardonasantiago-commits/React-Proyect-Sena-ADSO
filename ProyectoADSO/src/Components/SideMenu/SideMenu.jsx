@@ -22,16 +22,16 @@ const SideMenu = () => {
                     <ul className={styles.sideMenuList}>
                         {/* Usar Link para navegación */}
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/buscarproducto" className={styles.menuLink}>Buscar Producto</Link>
+                            <Link to="/admin/BuscarProducto" className={styles.menuLink}>Buscar Producto</Link>
                         </li>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/agregarproducto" className={styles.menuLink}>Agregar Producto</Link>
+                            <Link to="/admin/AgregarProducto" className={styles.menuLink}>Agregar Producto</Link>
                         </li>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/editarproducto" className={styles.menuLink}>Editar Producto</Link>
+                            <Link to="/admin/EditarProducto" className={styles.menuLink}>Editar Producto</Link>
                         </li>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/eliminarproducto" className={styles.menuLink}>Eliminar Producto</Link>
+                            <Link to="/admin/EliminarProducto" className={styles.menuLink}>Eliminar Producto</Link>
                         </li>
                     </ul>
                 </div>
@@ -41,10 +41,10 @@ const SideMenu = () => {
                     <span className={styles.menuTitle}>Estadísticas</span>
                     <ul className={styles.sideMenuList}>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/ventas" className={styles.menuLink}>Ventas</Link>
+                            <Link to="/admin/Ventas" className={styles.menuLink}>Ventas</Link>
                         </li>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/usuarios" className={styles.menuLink}>Usuarios</Link>
+                            <Link to="/admin/Usuarios" className={styles.menuLink}>Usuarios</Link>
                         </li>
                     </ul>
                 </div>
@@ -54,7 +54,7 @@ const SideMenu = () => {
                     <span className={styles.menuTitle}>Configuración</span> 
                     <ul className={styles.sideMenuList}>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/perfil" className={styles.menuLink}>Perfil</Link>
+                            <Link to="/admin/Perfil" className={styles.menuLink}>Perfil</Link>
                         </li>
                         {/* Esto no es un Link, sino una acción (pendiente de implementar la lógica de logout) */}
                         <li className={`${styles.sideMenuItem} ${styles.logout}`}>
