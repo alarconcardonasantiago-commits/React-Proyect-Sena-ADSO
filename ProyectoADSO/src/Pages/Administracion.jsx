@@ -22,7 +22,7 @@ const Administracion = () => {
                   Login
                 </li>
               </Link>
-              
+
               <Link to="/Administracion/RegisterForm" className={styles.linkText}>
                 <li className={`${styles.Register} ${isActive('RegisterForm') ? styles.active : ''}`}>
                   Registrar
@@ -33,13 +33,7 @@ const Administracion = () => {
         </nav>
         <hr className={styles.separator}/>
       </div> 
-      
-      {/* AQUÍ ES LA MAGIA: 
-         El Outlet renderizará <LoginForm /> o <RegisterForm /> 
-         dependiendo de la URL, sin que tengas que poner condicionales.
-      */}
       <Outlet /> 
-
     </div>
   )
 }

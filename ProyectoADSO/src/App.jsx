@@ -5,12 +5,7 @@ import Home from './Pages/Home.jsx'
 import { Routes, Route } from "react-router-dom";
 import Contacto from './Pages/Contacto.jsx'
 import Productos from './Pages/Productos.jsx';
-
-// Importa el Layout (El esqueleto con los botones)
 import Administracion from './Pages/Administracion.jsx';
-
-// Importa los componentes refactoreados
-// Asegúrate de que la ruta de importación sea la correcta donde guardaste los archivos
 import LoginForm from './Components/LoginForm/LoginForm.jsx'; 
 import RegisterForm from './Components/RegisterForm/RegisterForm.jsx';
 import BuscarProducto from './Pages/AdministracionPages/BuscarProducto.jsx';
@@ -33,9 +28,7 @@ function App() {
                 <Route path='LoginForm' element={<LoginForm />} />
                 <Route path='RegisterForm' element={<RegisterForm />} />                
             </Route>
-
             <Route path='/Administracion/BuscarProducto' element={<BuscarProducto />}/>
-
           </Routes>
       </main>
       <Footer className={styles.footer} />
