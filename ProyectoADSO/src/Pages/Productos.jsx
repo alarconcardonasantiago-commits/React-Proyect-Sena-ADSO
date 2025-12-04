@@ -9,7 +9,6 @@ const Productos = () => {
   const [loading, setLoading] = useState(false)
   const [showSpinner, setShowSpinner] = useState(false)
   const [error, setError] = useState(null)
-
   const toggleLayout = () => setIsGrid(!isGrid)
 
   // 🔹 Función principal de carga (con spinner inteligente)

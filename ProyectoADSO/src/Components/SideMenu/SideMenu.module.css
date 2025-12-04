@@ -1,0 +1,92 @@
+/* src/Components/SideMenu/SideMenu.module.css */
+
+/* 1. Contenedor Principal: Fijo y de Pantalla Completa */
+.sideMenu {
+    /* 💡 Clave para que esté SIEMPRE visible */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 250px; /* Ancho estándar para sidebars */
+    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    background-color: #2c3e50; /* Color oscuro */
+    color: #ecf0f1; /* Texto claro */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+/* 2. Encabezado / Logo */
+.header {
+    padding: 0 20px 20px 20px;
+    border-bottom: 1px solid #34495e; /* Línea separadora */
+    margin-bottom: 10px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+/* 3. Contenedor de Grupos de Menú */
+.menuGroups {
+    flex-grow: 1; /* Permite que el contenido se estire */
+    overflow-y: auto; /* Permite scroll si hay muchos elementos */
+    padding: 0 20px;
+}
+
+/* 4. Título de la Sección */
+.menuTitle {
+    display: block; /* Asegura que ocupe su propia línea */
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #95a5a6; /* Texto de sección más claro */
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+}
+
+/* 5. Lista de Elementos (ul) */
+.sideMenuList {
+    list-style: none; /* Quita los puntos de la lista */
+    padding: 0;
+    margin: 0;
+}
+
+/* 6. Item de la Lista (li) */
+.sideMenuItem {
+    /* Padding y margen para el item */
+    margin: 4px 0;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* 7. Estilo del Enlace (Link) */
+.menuLink {
+    display: block; /* Ocupa todo el ancho del li */
+    padding: 10px 15px;
+    text-decoration: none; /* Quita el subrayado */
+    color: #ecf0f1;
+    font-size: 1rem;
+    border-radius: 5px; /* Bordes redondeados al hacer hover */
+}
+
+/* Efecto Hover */
+.sideMenuItem:hover {
+    background-color: #34495e; /* Color de fondo al pasar el ratón */
+    cursor: pointer;
+}
+
+/* Estilo especial para Cerrar Sesión */
+.logout {
+    color: #e74c3c; /* Color de alerta/salir */
+    margin-top: 15px;
+    padding: 10px 15px; /* Padding directo al li para el clic */
+    border-top: 1px solid #34495e;
+}
+.logout:hover {
+    background-color: #c0392b;
+    color: white;
+}

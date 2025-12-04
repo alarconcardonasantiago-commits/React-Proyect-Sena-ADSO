@@ -9,6 +9,7 @@ const BuscarProducto = () => {
     return (
         <div>
             <SearchBar />
+            {/* <ProductCard /> */}
         </div>
     );
 }

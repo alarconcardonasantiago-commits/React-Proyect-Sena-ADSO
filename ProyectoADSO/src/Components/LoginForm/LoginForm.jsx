@@ -37,7 +37,7 @@ const LoginForm = () => {
 
       // Pequeño delay para mostrar el mensaje de éxito antes de redirigir
       setTimeout(() => {
-        navigate('/Administracion/BuscarProducto');
+        navigate('/admin');
       }, 1000); // 1 segundo de delay visual
 
     } catch (err) {

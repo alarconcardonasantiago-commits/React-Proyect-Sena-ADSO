@@ -28,10 +28,9 @@ const Administracion = () => {
                   Registrar
                 </li>
               </Link>
-
+              
            </ul>
         </nav>
-        <hr className={styles.separator}/>
       </div> 
       <Outlet /> 
     </div>

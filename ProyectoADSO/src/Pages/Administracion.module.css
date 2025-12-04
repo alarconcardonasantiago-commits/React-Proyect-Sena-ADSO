@@ -13,7 +13,7 @@ h1 {
 
 /* Estilo para los elementos de la navegación */
 nav {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   /* Usamos flex y gap para separar los li */
   display: flex; 
   gap: 15px;
@@ -44,7 +44,7 @@ nav {
   border: 0;
   height: 1px;
   background-color: #ccc;
-  margin-top: -10px; /* Ajusta la posición de la línea */
+  margin-top: -10px; /* /* Ajusta la posición de la línea */
 }
 
 /* Clase para el botón activo (la que usamos en Administracion.jsx) */
