@@ -17,6 +17,12 @@ import BuscarProducto from './Pages/AdministracionPages/BuscarProducto/BuscarPro
 
 import PublicLayout from './layouts/PublicLayout.jsx'; 
 import Dashboard from './layouts/Dashboard.jsx'; 
+import EditarProducto from "./Pages/AdministracionPages/EditarProducto/EditarProducto.jsx";
+import EliminarProducto from './Pages/AdministracionPages/EliminarProducto/EliminarProducto.jsx';
+import AgregarProducto from './Pages/AdministracionPages/AgregarProducto/AgregarProducto.jsx';
+import Ventas from './Pages/AdministracionPages/Ventas/Ventas.jsx';
+import Usuarios from './Pages/AdministracionPages/Usuarios/Usuarios.jsx';
+import Perfil from './Pages/AdministracionPages/Perfil/Perfil.jsx';
 
 function App() {
   return (
@@ -39,12 +45,19 @@ function App() {
           {/* 3. RUTAS PROTEGIDAS/DASHBOARD */}
           <Route path='/admin' element={<Dashboard />}>
               <Route path='BuscarProducto' element={<BuscarProducto />}/>
-                {/* Otras rutas protegidas pueden ir aquí */}
-                
-
+              <Route path='EditarProducto' element={<EditarProducto />}/>
+              <Route path='EliminarProducto' element={<EliminarProducto />}/>
+              <Route path='AgregarProducto' element={<AgregarProducto />}/>
+              <Route path='Ventas' element={<Ventas />}/>
+              <Route path='Usuarios' element={<Usuarios />}/>
+              <Route path='Perfil' element={<Perfil />}/>
           </Route>
 
       </Routes>
   )
 }
+
+
+
+
 export default App
