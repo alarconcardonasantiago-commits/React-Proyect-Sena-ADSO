@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ProductCard from '../Components/ProductCard/ProductCard'
 import SearchBar from '../Components/SearchBar/SearchBar'
 import styles from './Productos.module.css'
@@ -9,7 +10,35 @@ const Productos = () => {
   const [loading, setLoading] = useState(false)
   const [showSpinner, setShowSpinner] = useState(false)
   const [error, setError] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState('Todos')
+  
+  const location = useLocation()
+  const navigate = useNavigate()
+  
+  const categorias = ['Todos', 'Cuerdas', 'Viento', 'Percusión', 'Electrónicos']
+
   const toggleLayout = () => setIsGrid(!isGrid)
+
+  // 1. Leer parámetro de URL al montar o cambiar
+  useEffect(() => {
+      const params = new URLSearchParams(location.search);
+      const catParam = params.get('categoria');
+      if (catParam && categorias.includes(catParam)) {
+          setSelectedCategory(catParam);
+      } else {
+          setSelectedCategory('Todos');
+      }
+  }, [location.search]);
+
+  // 2. Función para cambiar categoría (actualiza URL)
+  const handleCategoryChange = (categoria) => {
+      setSelectedCategory(categoria);
+      if (categoria === 'Todos') {
+          navigate('/Productos');
+      } else {
+          navigate(`/Productos?categoria=${categoria}`);
+      }
+  };
 
   // 🔹 Función principal de carga (con spinner inteligente)
   const fetchProductos = async (query = '') => {
@@ -46,10 +75,29 @@ const Productos = () => {
     fetchProductos()
   }, [])
 
+  // 3. Filtrar productos según la categoría seleccionada
+  const productosFiltrados = productos.filter(producto => {
+      if (selectedCategory === 'Todos') return true;
+      return producto.tipo === selectedCategory || producto.categoria === selectedCategory;
+  });
+
   return (
     <div className={styles.page}>
       {/* 🔍 Barra de búsqueda con debounce aumentado */}
       <SearchBar onSearch={fetchProductos} placeholder="Buscar productos..." delay={800} />
+
+      {/* Filtros de Categoría */}
+      <div className={styles.filters}>
+          {categorias.map(cat => (
+              <button
+                  key={cat}
+                  className={`${styles.filterChip} ${selectedCategory === cat ? styles.active : ''}`}
+                  onClick={() => handleCategoryChange(cat)}
+              >
+                  {cat}
+              </button>
+          ))}
+      </div>
 
       <div className={styles.controls}>
         <button onClick={toggleLayout} className={styles.toggleBtn}>
@@ -62,8 +110,8 @@ const Productos = () => {
 
       {/* 🧱 Contenedor de productos */}
       <div className={`${isGrid ? styles.gridLayout : styles.listLayout} ${loading ? styles.loadingState : ''}`}>
-        {productos.length > 0 ? (
-          productos.map((p) => (
+        {productosFiltrados.length > 0 ? (
+          productosFiltrados.map((p) => (
             <ProductCard
               key={p.id_producto}
               productImage="https://placehold.co/125"
@@ -74,7 +122,7 @@ const Productos = () => {
             />
           ))
         ) : (
-          !loading && <p>No se encontraron productos.</p>
+          !loading && <p>No se encontraron productos en esta categoría.</p>
         )}
       </div>
 

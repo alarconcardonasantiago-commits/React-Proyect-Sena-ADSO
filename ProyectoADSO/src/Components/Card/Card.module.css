@@ -1,42 +1,53 @@
 .card {
-    background-color: #313131;
-    border: none;
-    border-radius: 8px;
+    background-color: #2d2d2d;
+    border: 1px solid #404040;
+    border-radius: 12px;
     padding: 20px;
-    box-shadow: 1px 2px 4px rgba(0, 0, 2, 0.9);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     max-width: 300px;
-    margin: 10px;
-    display: inline-block;
     margin: 15px;
+    display: inline-block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 }
 
 .image {
     width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin-bottom: 15px;;
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 15px;
     object-fit: cover;
-    border-radius: 3%;
 }
 
 .title {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.25rem;
+    font-weight: 700;
     margin: 0 0 10px;
+    color: #ffffff;
 }
 
-.description {
-    font-size: 1rem;
-    color: #555;
+.content {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
 }
 
 .button {
     display: inline-block;
+    width: 100%;
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #007bff; /* Blue accent */
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
@@ -45,10 +56,11 @@
 }
 
 .button:active {
-    background-color: #003f7f;
+    background-color: #004494;
 }
 
 .button:disabled {
-    background-color: #ccc;
+    background-color: #4a4a4a;
+    color: #888;
     cursor: not-allowed;
 }

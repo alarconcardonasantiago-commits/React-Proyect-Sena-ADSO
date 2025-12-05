@@ -3,7 +3,7 @@ import Header from './Components/Header/Header.jsx'
 import Footer from './Components/Footer/Footer.jsx'
 import Home from './Pages/Home.jsx'
 import { Routes, Route } from "react-router-dom";
-import Contacto from './Pages/Contacto.jsx'
+import Nosotros from './Pages/Nosotros.jsx'
 import Productos from './Pages/Productos.jsx';
 
 // 1. Unificamos la importación del Layout de Administración
@@ -30,7 +30,7 @@ function App() {
           {/* 1. RUTAS PÚBLICAS */}
           <Route element={<PublicLayout />}>
               <Route path='/' element={<Home />}/>
-              <Route path='/Contacto' element={<Contacto />}/>
+              <Route path='/Nosotros' element={<Nosotros />}/>
               <Route path='/Productos' element={<Productos />}/>
               
               {/* Rutas de Login/Register */}

@@ -18,7 +18,7 @@ function Footer () {
                     <h4>Navegación</h4>
                     <a href="/">Inicio</a>
                     <a href="/Productos">Productos</a>
-                    <a href="/Contacto">Contacto</a>
+                    <a href="/Nosotros">Nosotros</a>
                     <a href="/Administracion/LoginForm">Administración</a>
                 </div>
 

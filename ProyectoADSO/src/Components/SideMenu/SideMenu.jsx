@@ -1,10 +1,20 @@
 // src/Components/SideMenu/SideMenu.jsx (Actualizado)
 
 import React from 'react';
-import { Link } from 'react-router-dom'; // 💡 Importar Link
+import { Link, useNavigate } from 'react-router-dom'; // 💡 Importar Link y useNavigate
 import styles from './SideMenu.module.css';
 
 const SideMenu = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        if (window.confirm('¿Estás seguro que deseas cerrar sesión?')) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('usuario');
+            navigate('/Administracion'); // Redirigir al login
+        }
+    };
+
     return (
         // 💡 Contenedor principal del menú lateral
         <nav className={styles.sideMenu}>
@@ -16,6 +26,16 @@ const SideMenu = () => {
 
             <div className={styles.menuGroups}>
                 
+                {/* 0. Grupo: Navegación */}
+                <div className={styles.menuGroup}>
+                    <span className={styles.menuTitle}>Navegación</span>
+                    <ul className={styles.sideMenuList}>
+                        <li className={styles.sideMenuItem}>
+                            <Link to="/" className={styles.menuLink}>🏠 Volver a la Tienda</Link>
+                        </li>
+                    </ul>
+                </div>
+
                 {/* 1. Grupo: Gestión de Productos */}
                 <div className={styles.menuGroup}>
                     <span className={styles.menuTitle}>Gestión de Productos</span>
@@ -56,9 +76,12 @@ const SideMenu = () => {
                         <li className={styles.sideMenuItem}>
                             <Link to="/admin/Perfil" className={styles.menuLink}>Perfil</Link>
                         </li>
-                        {/* Esto no es un Link, sino una acción (pendiente de implementar la lógica de logout) */}
-                        <li className={`${styles.sideMenuItem} ${styles.logout}`}>
-                            Cerrar Sesión
+                        {/* Botón de Cerrar Sesión con lógica */}
+                        <li 
+                            className={`${styles.sideMenuItem} ${styles.logout}`}
+                            onClick={handleLogout}
+                        >
+                            🚪 Cerrar Sesión
                         </li>
                     </ul>
                 </div>

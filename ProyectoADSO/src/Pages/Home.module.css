@@ -1,0 +1,82 @@
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #1a1a1a;
+    padding-bottom: 4rem;
+}
+
+.heroSection {
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.popularSection {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.sectionTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sectionTitle::after {
+    content: '';
+    height: 4px;
+    flex: 1;
+    background: linear-gradient(90deg, #007bff, transparent);
+    border-radius: 2px;
+}
+
+.scrollContainer {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 1rem 0 3rem 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Scrollbar */
+.scrollContainer::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+    background: #2d2d2d;
+    border-radius: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+    background: #404040;
+    border-radius: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+    background: #007bff;
+}
+
+.description {
+    text-align: center;
+    color: #888;
+    margin-top: 2rem;
+}
+
+.categoriesSection {
+    max-width: 1400px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.categoriesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}

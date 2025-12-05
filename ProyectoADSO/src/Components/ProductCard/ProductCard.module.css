@@ -2,19 +2,21 @@
 .cardHorizontal {
   display: flex;
   align-items: center;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  background: #2d2d2d;
+  border: 1px solid #404040;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   margin: 10px auto;
-  padding: 12px;
-  transition: 0.2s ease;
+  padding: 16px;
+  transition: all 0.2s ease;
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 .cardHorizontal:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  border-color: #505050;
 }
 
 /* 🔹 Estilo tipo cuadrícula (galería) */
@@ -22,72 +24,90 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  margin: 10px;
-  width: 220px;
-  transition: 0.2s ease;
+  background: #2d2d2d;
+  border: 1px solid #404040;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  margin: 12px;
+  width: 240px;
+  transition: all 0.2s ease;
 }
 
 .cardGrid:hover {
-  transform: scale(1.02);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  border-color: #505050;
 }
 
 .imageWrapper {
-  width: 160px;
-  height: 160px;
+  width: 100%;
+  height: 180px;
   overflow: hidden;
   border-radius: 8px;
-  background: #f9f9f9;
+  background: #1a1a1a;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.cardGrid:hover .image, .cardHorizontal:hover .image {
+  transform: scale(1.05);
 }
 
 .content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding-left: 1rem;
+  width: 100%;
+}
+
+.cardHorizontal .content {
+    padding-left: 1.5rem;
 }
 
 .name {
   font-size: 1.1rem;
   font-weight: 600;
-  color: #222;
+  color: #ffffff;
+  margin: 0;
 }
 
 .description {
   font-size: 0.9rem;
-  color: #555;
+  color: #b0b0b0;
+  line-height: 1.4;
 }
 
 .price {
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: #007bff;
+  color: #007bff; /* Blue accent */
+  margin-top: 0.25rem;
 }
 
 .actions {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
 }
 
 .btn {
-  padding: 0.4rem 0.8rem;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s ease;
+  border: none;
 }
 
 .primary {
@@ -97,13 +117,16 @@
 
 .primary:hover {
   background-color: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 .secondary {
-  background-color: #eee;
-  color: #333;
+  background-color: #404040;
+  color: #e5e5e5;
 }
 
 .secondary:hover {
-  background-color: #ccc;
+  background-color: #505050;
+  color: white;
 }
