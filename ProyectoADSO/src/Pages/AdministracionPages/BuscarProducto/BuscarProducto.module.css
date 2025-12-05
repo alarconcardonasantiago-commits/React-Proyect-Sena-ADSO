@@ -1,0 +1,173 @@
+/* BuscarProducto - Sistema de Inventario */
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 2rem;
+}
+
+.header h1 {
+    color: #1f2937;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+/* Sección de búsqueda */
+.searchSection {
+    margin-bottom: 1.5rem;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Filtros de categoría */
+.filters {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filterChip {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #e5e7eb;
+    background: white;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #4b5563;
+}
+
+.filterChip:hover {
+    border-color: #6366f1;
+    background: #f0f1ff;
+    transform: translateY(-2px);
+}
+
+.filterChip.active {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    border-color: #6366f1;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* Resultados */
+.results {
+    margin-top: 2rem;
+}
+
+.resultCount {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    padding: 4rem 2rem;
+    color: #9ca3af;
+}
+
+.noResults p {
+    font-size: 1.2rem;
+}
+
+/* Error box */
+.errorBox {
+    background: #fee2e2;
+    border-left: 4px solid #ef4444;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.errorBox p {
+    color: #991b1b;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Overlay transparente para mostrar mientras carga (como Productos.jsx) */
+.loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.loadingOverlay span {
+    margin-top: 0.5rem;
+    color: #4b5563;
+    font-weight: 500;
+}
+
+/* Animación del spinner */
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #ddd;
+    border-top: 4px solid #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Efecto visual leve cuando se actualiza */
+.loadingState {
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .productsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        gap: 0.5rem;
+    }
+
+    .filterChip {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+}

@@ -1,0 +1,24 @@
+/* Dashboard Layout - Sistema de Inventario de Instrumentos Musicales */
+
+.dashboardContainer {
+    display: flex;
+    min-height: 100vh;
+    background: #f9fafb; /* Fondo claro para mejor contraste */
+}
+
+.mainContent {
+    margin-left: 250px; /* Espacio para el SideMenu fijo */
+    flex: 1;
+    padding:2rem;
+    width: calc(100% - 250px);
+    background: #f9fafb; /* Fondo claro consistente */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mainContent {
+        margin-left: 0;
+        width: 100%;
+        padding: 1rem;
+    }
+}
