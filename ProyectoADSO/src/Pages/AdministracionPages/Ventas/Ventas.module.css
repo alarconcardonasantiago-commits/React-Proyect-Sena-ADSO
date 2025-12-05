@@ -1,8 +1,9 @@
-/* Ventas - Sistema de Inventario */
+/* Ventas - Sistema de Inventario - Dark Theme */
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
 .header {
@@ -10,13 +11,13 @@
 }
 
 .header h1 {
-    color: #1f2937;
+    color: #ffffff;
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
 .subtitle {
-    color: #6b7280;
+    color: #b0b0b0;
     font-size: 1.1rem;
 }
 
@@ -29,39 +30,39 @@
 }
 
 .statCard {
-    background: white;
+    background: #2d2d2d;
     border-radius: 16px;
     padding: 1.5rem;
     display: flex;
     gap: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     border-left: 4px solid;
 }
 
 .statCard:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
 .cardPrimary {
     border-color: #6366f1;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f1ff 100%);
+    background: linear-gradient(135deg, #2d2d2d 0%, rgba(99, 102, 241, 0.1) 100%);
 }
 
 .cardSuccess {
     border-color: #10b981;
-    background: linear-gradient(135deg, #ffffff 0%, #d1fae5 100%);
+    background: linear-gradient(135deg, #2d2d2d 0%, rgba(16, 185, 129, 0.1) 100%);
 }
 
 .cardInfo {
     border-color: #3b82f6;
-    background: linear-gradient(135deg, #ffffff 0%, #dbeafe 100%);
+    background: linear-gradient(135deg, #2d2d2d 0%, rgba(59, 130, 246, 0.1) 100%);
 }
 
 .cardWarning {
     border-color: #f59e0b;
-    background: linear-gradient(135deg, #ffffff 0%, #fef3c7 100%);
+    background: linear-gradient(135deg, #2d2d2d 0%, rgba(245, 158, 11, 0.1) 100%);
 }
 
 .statIcon {
@@ -70,13 +71,13 @@
     align-items: center;
 }
 
-.statContent {
+.statInfo {
     flex: 1;
 }
 
-.statContent h3 {
-    color: #6b7280;
-    font-size: 0.9rem;
+.statLabel {
+    color: #9ca3af;
+    font-size: 0.85rem;
     font-weight: 500;
     margin: 0 0 0.5rem 0;
     text-transform: uppercase;
@@ -84,33 +85,30 @@
 }
 
 .statValue {
-    color: #1f2937;
+    color: #ffffff;
     font-size: 1.75rem;
     font-weight: 700;
     margin: 0 0 0.25rem 0;
 }
 
-.statLabel {
-    color: #9ca3af;
+.statMeta {
+    color: #6b7280;
     font-size: 0.85rem;
 }
 
 /* Sección de tabla */
-.tableSection {
-    margin-top: 2rem;
+.tableCard {
+    background: #2d2d2d;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    overflow-x: auto;
 }
 
-.tableSection h2 {
-    color: #1f2937;
+.tableCard h2 {
+    color: #ffffff;
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
-}
-
-.tableContainer {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .table {
@@ -131,22 +129,17 @@
 }
 
 .table tbody tr {
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid #404040;
     transition: background 0.2s ease;
 }
 
 .table tbody tr:hover {
-    background: #f9fafb;
+    background: #333333;
 }
 
 .table tbody td {
     padding: 1rem;
-    color: #4b5563;
-}
-
-.productName {
-    font-weight: 600;
-    color: #1f2937;
+    color: #b0b0b0;
 }
 
 .price {
@@ -156,7 +149,7 @@
 }
 
 /* Badges de estado */
-.badge {
+.statusBadge {
     display: inline-block;
     padding: 0.35rem 0.85rem;
     border-radius: 20px;
@@ -164,14 +157,67 @@
     font-weight: 600;
 }
 
-.badgeSuccess {
-    background: #d1fae5;
-    color: #065f46;
+.statusSuccess {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
 }
 
-.badgePending {
-    background: #fef3c7;
-    color: #92400e;
+.statusPending {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+}
+
+/* Loading overlay */
+.loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.loadingOverlay span {
+    margin-top: 0.5rem;
+    color: #e5e5e5;
+    font-weight: 500;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #404040;
+    border-top: 4px solid #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error box */
+.errorBox {
+    background: rgba(239, 68, 68, 0.15);
+    border-left: 4px solid #ef4444;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.errorBox p {
+    color: #fca5a5;
+    margin: 0;
+    font-weight: 500;
 }
 
 /* Responsive */
@@ -184,7 +230,7 @@
         grid-template-columns: 1fr;
     }
 
-    .tableContainer {
+    .tableCard {
         overflow-x: auto;
     }
 

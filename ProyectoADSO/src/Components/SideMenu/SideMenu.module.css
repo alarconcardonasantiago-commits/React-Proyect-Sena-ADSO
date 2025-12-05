@@ -8,26 +8,30 @@
     left: 0;
     width: 250px; /* Ancho estándar para sidebars */
     height: 100vh; /* Ocupa el 100% de la altura de la ventana */
-    background-color: #2c3e50; /* Color oscuro */
-    color: #ecf0f1; /* Texto claro */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #1b1b1b; /* Color oscuro neutro (coincide con Header) */
+    color: #ffffff; /* Texto claro */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
     padding: 20px 0;
     
     display: flex;
     flex-direction: column;
+    z-index: 1000;
 }
 
 /* 2. Encabezado / Logo */
 .header {
     padding: 0 20px 20px 20px;
-    border-bottom: 1px solid #34495e; /* Línea separadora */
+    border-bottom: 1px solid #404040; /* Línea separadora */
     margin-bottom: 10px;
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #ecf0f1;
+    color: #ffffff;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* 3. Contenedor de Grupos de Menú */
@@ -40,13 +44,14 @@
 /* 4. Título de la Sección */
 .menuTitle {
     display: block; /* Asegura que ocupe su propia línea */
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #95a5a6; /* Texto de sección más claro */
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #6b7280; /* Texto de sección más oscuro */
     text-transform: uppercase;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    padding-left: 5px;
+    margin-top: 24px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    letter-spacing: 0.05em;
 }
 
 /* 5. Lista de Elementos (ul) */
@@ -60,7 +65,6 @@
 .sideMenuItem {
     /* Padding y margen para el item */
     margin: 4px 0;
-    transition: background-color 0.2s, color 0.2s;
 }
 
 /* 7. Estilo del Enlace (Link) */
@@ -68,25 +72,32 @@
     display: block; /* Ocupa todo el ancho del li */
     padding: 10px 15px;
     text-decoration: none; /* Quita el subrayado */
-    color: #ecf0f1;
-    font-size: 1rem;
-    border-radius: 5px; /* Bordes redondeados al hacer hover */
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    border-radius: 8px; /* Bordes redondeados al hacer hover */
+    transition: all 0.2s ease;
+    font-weight: 500;
 }
 
 /* Efecto Hover */
-.sideMenuItem:hover {
-    background-color: #34495e; /* Color de fondo al pasar el ratón */
-    cursor: pointer;
+.menuLink:hover {
+    background-color: #2d2d2d; /* Color de fondo al pasar el ratón */
+    color: #ffffff;
+    transform: translateX(4px);
 }
 
 /* Estilo especial para Cerrar Sesión */
 .logout {
-    color: #e74c3c; /* Color de alerta/salir */
+    color: #ef4444; /* Color de alerta/salir */
     margin-top: 15px;
     padding: 10px 15px; /* Padding directo al li para el clic */
-    border-top: 1px solid #34495e;
+    border-top: 1px solid #404040;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-weight: 500;
 }
 .logout:hover {
-    background-color: #c0392b;
-    color: white;
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
 }

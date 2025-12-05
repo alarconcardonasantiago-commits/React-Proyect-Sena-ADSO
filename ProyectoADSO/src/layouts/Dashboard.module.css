@@ -3,7 +3,7 @@
 .dashboardContainer {
     display: flex;
     min-height: 100vh;
-    background: #f9fafb; /* Fondo claro para mejor contraste */
+    /* background: #f9fafb;  */
 }
 
 .mainContent {
@@ -11,7 +11,7 @@
     flex: 1;
     padding:2rem;
     width: calc(100% - 250px);
-    background: #f9fafb; /* Fondo claro consistente */
+    /* background: #2d2d2d;  */
 }
 
 /* Responsive */

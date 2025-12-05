@@ -1,8 +1,9 @@
-/* Usuarios - Sistema de Inventario */
+/* Usuarios - Sistema de Inventario - Dark Theme */
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
+    padding: 2rem 1rem;
 }
 
 .header {
@@ -13,13 +14,13 @@
 }
 
 .header h1 {
-    color: #1f2937;
+    color: #ffffff;
     font-size: 2rem;
     margin-bottom: 0.5rem;
 }
 
 .subtitle {
-    color: #6b7280;
+    color: #b0b0b0;
     font-size: 1.1rem;
 }
 
@@ -41,7 +42,7 @@
 }
 
 /* Mini estadísticas */
-.statsRow {
+.miniStats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
@@ -49,10 +50,10 @@
 }
 
 .miniStat {
-    background: white;
+    background: #2d2d2d;
     padding: 1.25rem;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 
@@ -65,18 +66,18 @@
 }
 
 .miniStatLabel {
-    color: #6b7280;
+    color: #9ca3af;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 /* Tabla */
-.tableContainer {
-    background: white;
+.tableCard {
+    background: #2d2d2d;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .table {
@@ -97,26 +98,26 @@
 }
 
 .table tbody tr {
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid #404040;
     transition: background 0.2s ease;
 }
 
 .table tbody tr:hover {
-    background: #f9fafb;
+    background: #333333;
 }
 
 .table tbody td {
     padding: 1rem;
-    color: #4b5563;
+    color: #b0b0b0;
 }
 
 .userName {
     font-weight: 600;
-    color: #1f2937;
+    color: #ffffff;
 }
 
 /* Badges */
-.badge {
+.roleBadge {
     display: inline-block;
     padding: 0.35rem 0.85rem;
     border-radius: 20px;
@@ -124,54 +125,119 @@
     font-weight: 600;
 }
 
-.badgeAdmin {
+.roleAdmin {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     color: white;
 }
 
-.badgeVendedor {
+.roleVendedor {
     background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     color: white;
 }
 
-.badgeCliente {
-    background: #e0e7ff;
-    color: #4338ca;
+.roleCliente {
+    background: rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
 }
 
-.badgeActivo {
-    background: #d1fae5;
-    color: #065f46;
+.statusBadge {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
-.badgeInactivo {
-    background: #f3f4f6;
-    color: #6b7280;
+.statusActivo {
+    background: rgba(16, 185, 129, 0.2);
+    color: #6ee7b7;
+}
+
+.statusInactivo {
+    background: #404040;
+    color: #9ca3af;
 }
 
 /* Botones de acción */
-.actionButtons {
+.actions {
     display: flex;
     gap: 0.5rem;
 }
 
-.btnAction {
+.btnView, .btnEdit, .btnDeactivate {
     padding: 0.5rem 0.75rem;
-    background: #f3f4f6;
+    background: #404040;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 1rem;
+    color: #b0b0b0;
 }
 
-.btnAction:hover {
+.btnView:hover, .btnEdit:hover {
     background: #6366f1;
+    color: white;
     transform: scale(1.1);
 }
 
-.btnAction.btnDanger:hover {
+.btnDeactivate:hover {
     background: #ef4444;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* Error box */
+.errorBox {
+    background: rgba(239, 68, 68, 0.15);
+    border-left: 4px solid #ef4444;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.errorBox p {
+    color: #fca5a5;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Loading overlay */
+.loadingOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.loadingOverlay span {
+    margin-top: 0.5rem;
+    color: #e5e5e5;
+    font-weight: 500;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #404040;
+    border-top: 4px solid #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Responsive */
@@ -191,7 +257,7 @@
         font-size: 1.5rem;
     }
 
-    .tableContainer {
+    .tableCard {
         overflow-x: auto;
     }
 
@@ -199,7 +265,7 @@
         min-width: 800px;
     }
 
-    .statsRow {
+    .miniStats {
         grid-template-columns: 1fr;
     }
 }
