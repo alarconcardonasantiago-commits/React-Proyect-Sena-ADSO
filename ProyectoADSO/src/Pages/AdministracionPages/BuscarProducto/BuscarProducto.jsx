@@ -9,6 +9,7 @@ const BuscarProducto = () => {
     const [loading, setLoading] = useState(false);
     const [showSpinner, setShowSpinner] = useState(false);
     const [error, setError] = useState(null);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     const categorias = ['Todos', 'Cuerdas', 'Viento', 'Percusión', 'Electrónicos'];
 
@@ -61,6 +62,30 @@ const BuscarProducto = () => {
         if (selectedCategory === 'Todos') return true;
         return producto.tipo === selectedCategory || producto.categoria === selectedCategory;
     });
+
+    const handleViewProduct = (product) => {
+    // Map product data to modal format
+    setSelectedProduct({
+        image: "https://placehold.co/400", // Placeholder for now as API might not return image URL yet
+        title: product.nombre,
+        price: `$${product.precio.toLocaleString()}`,
+        content: product.descripcion || product.tipo || 'Sin descripción disponible.'
+    })
+  }
+
+  const handleCloseModal = () => {
+    setSelectedProduct(null)
+  }
+
+  const formatPrice = (price) => {
+    if (price >= 1000000) {
+      return `$${(price / 1000000).toFixed(1).replace(/\.0$/, '')}M`
+    }
+    if (price >= 1000) {
+      return `$${(price / 1000).toFixed(1).replace(/\.0$/, '')}K`
+    }
+    return `$${price.toLocaleString()}`
+  }
 
     return (
         <div className={styles.container}>

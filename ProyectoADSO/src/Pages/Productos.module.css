@@ -47,118 +47,116 @@
   margin: 0 auto;
 }
 
-.controls {
-  text-align: right;
-  margin-bottom: 2rem;
-  padding-right: 1rem;
+/* Header Controls */
+.searchSection {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
 }
 
-.toggleBtn {
-  padding: 10px 18px;
-  border: 1px solid #007bff;
-  background-color: transparent;
-  color: #007bff;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-weight: 600;
-  font-size: 0.9rem;
+.searchSection :global(.searchContainer) {
+    margin-bottom: 0;
+    width: 100%;
+    max-width: 600px;
 }
 
-.toggleBtn:hover {
-  background-color: #007bff;
-  color: white;
-}
-
-.gridLayout {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.listLayout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Overlay transparente para mostrar mientras carga */
-.loadingOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Darker overlay */
-  backdrop-filter: blur(4px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  pointer-events: none; /* no bloquea clicks */
-}
-
-.loadingOverlay span {
-    color: white;
-    margin-top: 1rem;
-    font-weight: 500;
-}
-
-/* Animación del spinner */
-.spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid rgba(255, 255, 255, 0.1);
-  border-top: 4px solid #007bff; /* Blue accent */
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Efecto visual leve cuando se actualiza */
-.loadingState {
-  opacity: 0.5;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
+.headerControls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: transparent;
+    padding: 0;
+    position: static;
 }
 
 .filters {
+    justify-content: center;
     display: flex;
     gap: 0.75rem;
-    margin-bottom: 2rem;
     flex-wrap: wrap;
-    justify-content: center;
+    flex: 1;
 }
 
 .filterChip {
-    padding: 0.6rem 1.2rem;
-    border: 2px solid #404040;
-    background: #2d2d2d;
-    border-radius: 25px;
-    font-size: 0.95rem;
-    font-weight: 500;
+    background-color: #2d2d2d;
+    border: 1px solid #404040;
+    color: #9ca3af;
+    padding: 0.5rem 1.25rem;
+    border-radius: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    color: #b0b0b0;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
 .filterChip:hover {
-    border-color: #007bff;
-    background: rgba(0, 123, 255, 0.15);
-    transform: translateY(-2px);
+    background-color: #3f3f46;
+    color: #ffffff;
+    border-color: #52525b;
 }
 
 .filterChip.active {
-    background: #007bff;
-    color: white;
+    background-color: #007bff;
+    color: #ffffff;
     border-color: #007bff;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+}
+
+.viewSwitcher {
+    background-color: #2d2d2d;
+    border: 1px solid #404040;
+    color: #9ca3af;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.viewSwitcher:hover {
+    background-color: #3f3f46;
+    color: #ffffff;
+    border-color: #52525b;
+}
+
+/* Layouts */
+.gridLayout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.listLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.loadingState {
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.noResults {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 1.1rem;
+    margin-top: 3rem;
+    width: 100%;
+    grid-column: 1 / -1;
 }
