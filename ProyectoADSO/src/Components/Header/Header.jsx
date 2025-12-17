@@ -1,5 +1,6 @@
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
+import Nosotros from '../../Pages/Nosotros'
 import Productos from '../../Pages/Productos'
 import Home from '../../Pages/Home'
 
