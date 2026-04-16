@@ -8,7 +8,7 @@ function Footer () {
                 
                 {/* COLUMNA 1: Copyright e Info Legal */}
                 <div className={styles.col}>
-                    <p>© 2023 Proyecto ADSO.</p>
+                    <p>© 2026 Proyecto ADSO.</p>
                     <p>Todos los derechos reservados.</p>
                     <p>Desarrollado por Santiago Alarcon</p>
                 </div>

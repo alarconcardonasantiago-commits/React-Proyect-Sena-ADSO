@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './ProductCard.module.css'
 
-const ProductCard = ({ productImage, productName, productDescription, productPrice, formattedPrice, layout, onView }) => {
+const ProductCard = ({ productImage, productName, productDescription, productPrice, formattedPrice, layout, onView, onAddToCart }) => {
   const isHorizontal = layout === 'horizontal'
 
   return (
@@ -23,7 +23,7 @@ const ProductCard = ({ productImage, productName, productDescription, productPri
         <div className={styles.footer}>
             <span className={styles.price}>{formattedPrice || `$${productPrice.toLocaleString()}`}</span>
             <div className={styles.actions}>
-                <button className={`${styles.btn} ${styles.primary}`}>
+                <button className={`${styles.btn} ${styles.primary}`} onClick={onAddToCart}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
                     Agregar
                 </button>
@@ -45,12 +45,14 @@ ProductCard.propTypes = {
   productPrice: PropTypes.number.isRequired,
   formattedPrice: PropTypes.string,
   layout: PropTypes.oneOf(['horizontal', 'grid']),
-  onView: PropTypes.func
+  onView: PropTypes.func,
+  onAddToCart: PropTypes.func
 }
 
 ProductCard.defaultProps = {
   layout: 'horizontal',
-  onView: () => {}
+  onView: () => {},
+  onAddToCart: () => {}
 }
 
 export default ProductCard

@@ -4,6 +4,7 @@ import ProductCard from '../Components/ProductCard/ProductCard'
 import SearchBar from '../Components/SearchBar/SearchBar'
 import ProductModal from '../Components/ProductModal/ProductModal'
 import styles from './Productos.module.css'
+import { useCart } from '../context/CartContext'
 
 const Productos = () => {
   const [productos, setProductos] = useState([])
@@ -12,6 +13,8 @@ const Productos = () => {
   const [showSpinner, setShowSpinner] = useState(false)
   const [error, setError] = useState(null)
   const [selectedCategory, setSelectedCategory] = useState('Todos')
+  
+  const { addToCart } = useCart()
   
   // Infinite Scroll State
   const [visibleCount, setVisibleCount] = useState(12)
@@ -184,6 +187,7 @@ const Productos = () => {
               formattedPrice={formatPrice(p.precio)}
               layout={isGrid ? 'grid' : 'horizontal'}
               onView={() => handleViewProduct(p)}
+              onAddToCart={() => addToCart(p)}
             />
           ))
         ) : (

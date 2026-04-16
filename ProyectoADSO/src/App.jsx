@@ -23,9 +23,12 @@ import AgregarProducto from './Pages/AdministracionPages/AgregarProducto/Agregar
 import Ventas from './Pages/AdministracionPages/Ventas/Ventas.jsx';
 import Usuarios from './Pages/AdministracionPages/Usuarios/Usuarios.jsx';
 import Perfil from './Pages/AdministracionPages/Perfil/Perfil.jsx';
+import Cart from './Components/Cart/Cart.jsx';
 
 function App() {
   return (
+    <>
+      <Cart />
       <Routes>          
           {/* 1. RUTAS PÚBLICAS */}
           <Route element={<PublicLayout />}>
@@ -54,6 +57,7 @@ function App() {
           </Route>
 
       </Routes>
+    </>
   )
 }
 export default App

@@ -1,0 +1,21 @@
+{
+  "name": "react-proyect-sena-adso",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alarconcardonasantiago-commits/React-Proyect-Sena-ADSO.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/alarconcardonasantiago-commits/React-Proyect-Sena-ADSO/issues"
+  },
+  "homepage": "https://github.com/alarconcardonasantiago-commits/React-Proyect-Sena-ADSO#readme"
+}
