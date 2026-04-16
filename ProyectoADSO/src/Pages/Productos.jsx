@@ -118,13 +118,8 @@ const Productos = () => {
   const visibleProducts = productosFiltrados.slice(0, visibleCount)
 
   const handleViewProduct = (product) => {
-    // Map product data to modal format
-    setSelectedProduct({
-        image: "https://placehold.co/400", // Placeholder for now as API might not return image URL yet
-        title: product.nombre,
-        price: `$${product.precio.toLocaleString()}`,
-        content: product.descripcion || product.tipo || 'Sin descripción disponible.'
-    })
+    // Pasar el producto entero
+    setSelectedProduct(product)
   }
 
   const handleCloseModal = () => {

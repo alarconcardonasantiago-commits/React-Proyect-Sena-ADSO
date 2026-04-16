@@ -23,10 +23,8 @@ const Ventas = () => {
             setLoading(true);
             const spinnerTimer = setTimeout(() => setShowSpinner(true), 400);
 
-            // Intentar cargar ventas desde API
-            // Si el endpoint no existe, usar datos de ejemplo
             try {
-                const  data = await fetchWithAuth('/ventas');
+                const data = await fetchWithAuth('/ventas');
                 
                 clearTimeout(spinnerTimer);
                 setShowSpinner(false);
@@ -36,18 +34,7 @@ const Ventas = () => {
             } catch (apiError) {
                 clearTimeout(spinnerTimer);
                 setShowSpinner(false);
-                
-                console.warn('⚠️ Endpoint /ventas no disponible, usando datos de ejemplo');
-                // Datos de ejemplo si la API no tiene el endpoint
-                const datosEjemplo = [
-                    { id: 1, fecha: '2024-12-04', cliente: 'Juan Pérez', producto: 'Guitarra Yamaha', cantidad: 1, total: 450000, estado: 'Completado' },
-                    { id: 2, fecha: '2024-12-04', cliente: 'María López', producto: 'Piano Digital', cantidad: 1, total: 1200000, estado: 'Completado' },
-                    { id: 3, fecha: '2024-12-03', cliente: 'Carlos Ruiz', producto: 'Batería Pearl', cantidad: 1, total: 2500000, estado: 'Pendiente' },
-                    { id: 4, fecha: '2024-12-03', cliente: 'Ana Gómez', producto: 'Saxofón Alto', cantidad: 1, total: 1800000, estado: 'Completado' },
-                    { id: 5, fecha: '2024-12-02', cliente: 'Luis Martínez', producto: 'Bajo Fender', cantidad: 1, total: 980000, estado: 'Completado' }
-                ];
-                setVentas(datosEjemplo);
-                calcularEstadisticas(datosEjemplo);
+                throw apiError; // Re-lanzar el error para que sea capturado por el bloque catch principal
             }
         } catch (err) {
             console.error('❌ Error al cargar ventas:', err);

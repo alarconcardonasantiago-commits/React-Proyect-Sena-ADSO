@@ -269,3 +269,185 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Nuevos Estilos para Modales y Formularios */
+
+.successBox {
+    background: rgba(16, 185, 129, 0.15);
+    border-left: 4px solid #10b981;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.successBox p {
+    color: #6ee7b7;
+    margin: 0;
+    font-weight: 500;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modalCard {
+    background: #2d2d2d;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    animation: fadeInModal 0.3s ease;
+}
+
+@keyframes fadeInModal {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modalTitle {
+    color: #fff;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+}
+
+.modalTitleAlert {
+    color: #ef4444;
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+}
+
+.warningText {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.formGroup input, .formGroup select {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #404040;
+    background: #1f1f1f;
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.formGroup input:focus, .formGroup select:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btnCancel {
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: #b0b0b0;
+    border: 1px solid #404040;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btnCancel:hover {
+    background: #404040;
+    color: white;
+}
+
+.btnSubmit {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btnSubmit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.btnSubmit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btnConfirmAlert {
+    padding: 0.75rem 1.5rem;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btnConfirmAlert:hover:not(:disabled) {
+    background: #ef4444;
+}
+
+.btnConfirmAlert:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.loadingOverlaySpinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    z-index: 10;
+}

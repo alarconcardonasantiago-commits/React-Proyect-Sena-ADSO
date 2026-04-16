@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from '../../context/CartContext';
 import styles from './Cart.module.css';
+import { fetchWithAuth } from '../../utils/api';
 
 const Cart = () => {
     const { 
@@ -15,13 +16,35 @@ const Cart = () => {
 
     if (!isCartOpen) return null;
 
-    const handleCheckout = () => {
+    const handleCheckout = async () => {
         if (cart.length === 0) return;
         
-        // Aquí iría la lógica de integración con la API para POST /ventas
-        alert(`¡Gracias por tu compra por un total de $${cartTotal.toLocaleString('es-CO')}!`);
-        clearCart();
-        toggleCart();
+        try {
+            // Lógica de integración con la API para POST /ventas
+            const payload = {
+                // El backend debería tomar el id del cliente del Token JWT
+                detalles: cart.map(item => ({
+                    id_producto: item.id_producto || item.id,
+                    cantidad: item.quantity,
+                    precio_unitario: item.precio,
+                    subtotal: item.precio * item.quantity
+                })),
+                total: cartTotal
+            };
+            
+            // Intento de llamar a la API
+            await fetchWithAuth('/ventas', {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            });
+            
+            alert(`¡Gracias por tu compra por un total de $${cartTotal.toLocaleString('es-CO')}!`);
+            clearCart();
+            toggleCart();
+        } catch (error) {
+            console.error("Error al procesar la compra:", error);
+            alert("Hubo un error al procesar tu compra. Es probable que necesites iniciar sesión o el endpoint backend aún no exista.");
+        }
     };
 
     return (

@@ -28,8 +28,9 @@ export const CartProvider = ({ children }) => {
             const existingItem = prevCart.find(item => item.id_producto === product.id_producto);
             
             if (existingItem) {
+                const maxStock = product.stock || product.cantidad || 99;
                 // Si existe, incrementamos la cantidad solo si no supera el stock
-                if (existingItem.quantity < product.stock) {
+                if (existingItem.quantity < maxStock) {
                     return prevCart.map(item =>
                         item.id_producto === product.id_producto
                             ? { ...item, quantity: item.quantity + 1 }
@@ -58,8 +59,9 @@ export const CartProvider = ({ children }) => {
             return prevCart.map(item => {
                 if (item.id_producto === productId) {
                     const newQuantity = item.quantity + amount;
+                    const maxStock = item.stock || item.cantidad || 99;
                     // Asegurarse de que esté entre 1 y el stock
-                    if (newQuantity >= 1 && newQuantity <= item.stock) {
+                    if (newQuantity >= 1 && newQuantity <= maxStock) {
                         return { ...item, quantity: newQuantity };
                     }
                 }
