@@ -18,7 +18,9 @@ const LoginForm = () => {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:3000/api/auth/login', {
+      // ✅ Usar variable de entorno para la URL de la API
+      const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+      const res = await fetch(`${API}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ correo, contraseña })

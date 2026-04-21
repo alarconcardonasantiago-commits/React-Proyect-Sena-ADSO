@@ -28,8 +28,9 @@ const RegisterForm = () => {
     setLoading(true);
 
     try {
-      // ⚠️ Asegúrate que esta URL sea la correcta en tu backend
-      const res = await fetch('http://localhost:3000/api/auth/register', {
+      // ✅ Usar variable de entorno para la URL de la API
+      const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+      const res = await fetch(`${API}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

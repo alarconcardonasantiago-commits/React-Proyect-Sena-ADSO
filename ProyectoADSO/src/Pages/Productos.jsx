@@ -68,9 +68,11 @@ const Productos = () => {
       // ⏳ Timer: solo mostramos el spinner si la petición tarda más de 400 ms
       const spinnerTimer = setTimeout(() => setShowSpinner(true), 400)
 
-      let url = 'http://localhost:3000/api/productos'
+      // ✅ Usar variable de entorno para la URL de la API
+      const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+      let url = `${BASE}/productos`
       if (query.trim() !== '') {
-        url = `http://localhost:3000/api/productos/buscar?nombre=${encodeURIComponent(query)}`
+        url = `${BASE}/productos/buscar?nombre=${encodeURIComponent(query)}`
       }
 
       const res = await fetch(url)
