@@ -19,7 +19,7 @@ const LoginForm = () => {
 
     try {
       // ✅ Usar variable de entorno para la URL de la API
-      const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+      const API = import.meta.env.VITE_API_URL || 'https://api-inventario-onxl.onrender.com/api'
       const res = await fetch(`${API}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

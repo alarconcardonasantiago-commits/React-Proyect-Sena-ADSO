@@ -69,7 +69,7 @@ const Productos = () => {
       const spinnerTimer = setTimeout(() => setShowSpinner(true), 400)
 
       // ✅ Usar variable de entorno para la URL de la API
-      const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+      const BASE = import.meta.env.VITE_API_URL || 'https://api-inventario-onxl.onrender.com/api'
       let url = `${BASE}/productos`
       if (query.trim() !== '') {
         url = `${BASE}/productos/buscar?nombre=${encodeURIComponent(query)}`
