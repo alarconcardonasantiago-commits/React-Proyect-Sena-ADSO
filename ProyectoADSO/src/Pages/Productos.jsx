@@ -16,8 +16,9 @@ const Productos = () => {
   
   const { addToCart } = useCart()
   
-  // Infinite Scroll State
-  const [visibleCount, setVisibleCount] = useState(12)
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
   const PRODUCTS_PER_PAGE = 12
 
   // Modal State
@@ -44,7 +45,7 @@ const Productos = () => {
   // 2. Función para cambiar categoría (actualiza URL)
   const handleCategoryChange = (categoria) => {
       setSelectedCategory(categoria);
-      setVisibleCount(PRODUCTS_PER_PAGE); // Reset scroll on category change
+      setCurrentPage(1); // Reset page on category change
       if (categoria === 'Todos') {
           navigate('/Productos');
       } else {
@@ -52,27 +53,26 @@ const Productos = () => {
       }
   };
 
+  const [searchQuery, setSearchQuery] = useState('')
+
   // 🔹 Función principal de carga (con spinner inteligente)
-  const fetchProductos = async (query = '') => {
+  const fetchProductos = async (query = searchQuery, page = currentPage, category = selectedCategory) => {
     try {
-      // Solo mostramos loading si es la carga inicial o si cambiamos de categoría, no en búsqueda en vivo
-      // Para búsqueda, usamos el spinner pero mantenemos la lista visible sin opacidad
       const isSearch = query.trim() !== ''
-      
-      if (!isSearch) {
-          setLoading(true)
-      }
-      
+      if (!isSearch) setLoading(true)
       setError(null)
 
-      // ⏳ Timer: solo mostramos el spinner si la petición tarda más de 400 ms
       const spinnerTimer = setTimeout(() => setShowSpinner(true), 400)
-
-      // ✅ Usar variable de entorno para la URL de la API
       const BASE = import.meta.env.VITE_API_URL || 'https://api-inventario-onxl.onrender.com/api'
-      let url = `${BASE}/productos`
+      
+      // Siempre usamos /buscar ya que soporta todos los filtros y paginación global
+      let url = `${BASE}/productos/buscar?page=${page}&limit=${PRODUCTS_PER_PAGE}`
+      
       if (query.trim() !== '') {
-        url = `${BASE}/productos/buscar?nombre=${encodeURIComponent(query)}`
+        url += `&nombre=${encodeURIComponent(query)}`
+      }
+      if (category !== 'Todos') {
+        url += `&tipo=${encodeURIComponent(category)}`
       }
 
       const res = await fetch(url)
@@ -81,7 +81,14 @@ const Productos = () => {
 
       clearTimeout(spinnerTimer)
       setShowSpinner(false)
-      setProductos(data)
+      
+      if (data.datos) {
+        setProductos(data.datos)
+        setTotalPages(data.totalPages)
+      } else {
+        setProductos(Array.isArray(data) ? data : [])
+        setTotalPages(1)
+      }
     } catch (err) {
       console.error('❌ Error al obtener productos:', err)
       setError(err.message)
@@ -91,33 +98,19 @@ const Productos = () => {
     }
   }
 
-  // 🔸 Cargar productos al montar
+  // Ejecutar búsqueda cuando el usuario escribe (viene del SearchBar)
+  const handleSearch = (query) => {
+    setSearchQuery(query)
+    setCurrentPage(1) // Reset a la primera página al buscar
+  }
+
+  // 🔸 Cargar productos cada vez que cambie la página, la categoría o la búsqueda
   useEffect(() => {
-    fetchProductos()
-  }, [])
+    fetchProductos(searchQuery, currentPage, selectedCategory)
+  }, [currentPage, selectedCategory, searchQuery])
 
-  // Infinite Scroll Handler
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop >=
-        document.documentElement.offsetHeight - 100
-      ) {
-        setVisibleCount((prev) => prev + PRODUCTS_PER_PAGE)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // 3. Filtrar productos según la categoría seleccionada
-  const productosFiltrados = productos.filter(producto => {
-      if (selectedCategory === 'Todos') return true;
-      return producto.tipo === selectedCategory || producto.categoria === selectedCategory;
-  });
-
-  const visibleProducts = productosFiltrados.slice(0, visibleCount)
+  // Ya no filtramos localmente, el backend devuelve los productos correctos
+  const visibleProducts = productos
 
   const handleViewProduct = (product) => {
     // Pasar el producto entero
@@ -142,7 +135,7 @@ const Productos = () => {
     <div className={styles.page}>
       {/* 🔍 Barra de búsqueda arriba */}
       <div className={styles.searchSection}>
-        <SearchBar onSearch={fetchProductos} placeholder="Buscar productos..." delay={500} />
+        <SearchBar onSearch={handleSearch} placeholder="Buscar productos..." delay={500} />
       </div>
 
       {/* Header Controls: Filters + View Switcher */}
@@ -197,6 +190,31 @@ const Productos = () => {
         <div className={styles.loadingOverlay}>
           <div className={styles.spinner}></div>
           <span>Cargando...</span>
+        </div>
+      )}
+
+      {/* Controles de Paginación */}
+      {!loading && totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button 
+            className={styles.pageButton} 
+            disabled={currentPage === 1} 
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+          >
+            Anterior
+          </button>
+          
+          <span className={styles.pageInfo}>
+            Página {currentPage} de {totalPages}
+          </span>
+          
+          <button 
+            className={styles.pageButton} 
+            disabled={currentPage === totalPages} 
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+          >
+            Siguiente
+          </button>
         </div>
       )}
 

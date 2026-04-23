@@ -160,3 +160,44 @@
     width: 100%;
     grid-column: 1 / -1;
 }
+
+/* Paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.pageButton {
+    background-color: #2d2d2d;
+    border: 1px solid #404040;
+    color: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.pageButton:hover:not(:disabled) {
+    background-color: #007bff;
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+.pageButton:disabled {
+    background-color: #1a1a1a;
+    color: #4a4a4a;
+    border-color: #2a2a2a;
+    cursor: not-allowed;
+}
+
+.pageInfo {
+    color: #e5e7eb;
+    font-weight: 500;
+    font-size: 1rem;
+}
