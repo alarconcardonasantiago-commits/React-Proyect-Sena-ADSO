@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import ProductCard from '../Components/ProductCard/ProductCard'
 import SearchBar from '../Components/SearchBar/SearchBar'
@@ -99,10 +99,10 @@ const Productos = () => {
   }
 
   // Ejecutar búsqueda cuando el usuario escribe (viene del SearchBar)
-  const handleSearch = (query) => {
+  const handleSearch = useCallback((query) => {
     setSearchQuery(query)
     setCurrentPage(1) // Reset a la primera página al buscar
-  }
+  }, [])
 
   // 🔸 Cargar productos cada vez que cambie la página, la categoría o la búsqueda
   useEffect(() => {
@@ -130,6 +130,47 @@ const Productos = () => {
     }
     return `$${price.toLocaleString()}`
   }
+
+  const renderPagination = () => {
+    if (loading || totalPages <= 1) return null;
+    
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(
+        <button
+          key={i}
+          className={`${styles.pageButton} ${currentPage === i ? styles.activePage : ''}`}
+          onClick={() => setCurrentPage(i)}
+        >
+          {i}
+        </button>
+      );
+    }
+
+    return (
+      <div className={styles.pagination}>
+        <button 
+          className={styles.pageButton} 
+          disabled={currentPage === 1} 
+          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+        >
+          Anterior
+        </button>
+        
+        <div className={styles.pageNumbers}>
+          {pages}
+        </div>
+        
+        <button 
+          className={styles.pageButton} 
+          disabled={currentPage === totalPages} 
+          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+        >
+          Siguiente
+        </button>
+      </div>
+    );
+  };
 
   return (
     <div className={styles.page}>
@@ -164,6 +205,9 @@ const Productos = () => {
       {/* ⚠️ Mensaje de error */}
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
 
+      {/* Paginación Superior */}
+      {renderPagination()}
+
       {/* 🧱 Contenedor de productos */}
       <div className={`${isGrid ? styles.gridLayout : styles.listLayout} ${loading ? styles.loadingState : ''}`}>
         {visibleProducts.length > 0 ? (
@@ -193,30 +237,8 @@ const Productos = () => {
         </div>
       )}
 
-      {/* Controles de Paginación */}
-      {!loading && totalPages > 1 && (
-        <div className={styles.pagination}>
-          <button 
-            className={styles.pageButton} 
-            disabled={currentPage === 1} 
-            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-          >
-            Anterior
-          </button>
-          
-          <span className={styles.pageInfo}>
-            Página {currentPage} de {totalPages}
-          </span>
-          
-          <button 
-            className={styles.pageButton} 
-            disabled={currentPage === totalPages} 
-            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-          >
-            Siguiente
-          </button>
-        </div>
-      )}
+      {/* Paginación Inferior */}
+      {renderPagination()}
 
       <ProductModal product={selectedProduct} onClose={handleCloseModal} />
     </div>
