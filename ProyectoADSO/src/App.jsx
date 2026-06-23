@@ -24,6 +24,7 @@ import Ventas from './Pages/AdministracionPages/Ventas/Ventas.jsx';
 import Usuarios from './Pages/AdministracionPages/Usuarios/Usuarios.jsx';
 import Perfil from './Pages/AdministracionPages/Perfil/Perfil.jsx';
 import Cart from './Components/Cart/Cart.jsx';
+import Checkout from './Pages/Checkout.jsx';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path='/' element={<Home />}/>
               <Route path='/Nosotros' element={<Nosotros />}/>
               <Route path='/Productos' element={<Productos />}/>
+              <Route path='/Checkout' element={<Checkout />}/>
               
               {/* Rutas de Login/Register */}
               {/* Usamos AdministracionLayout aquí */}

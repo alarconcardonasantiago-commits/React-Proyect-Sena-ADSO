@@ -3,7 +3,7 @@
 // En desarrollo: crea un archivo .env en la raíz del frontend con:
 //   VITE_API_URL=http://localhost:3000/api
 // En producción (Vercel): configura VITE_API_URL=https://tu-api.railway.app/api
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://api-inventario-onxl.onrender.com/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
 
 /**
  * Función helper para hacer peticiones autenticadas a la API
