@@ -80,3 +80,17 @@
     gap: 1.5rem;
     margin-top: 2rem;
 }
+
+@media (max-width: 768px) {
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+    
+    .popularSection, .categoriesSection {
+        padding: 0 1rem;
+    }
+
+    .categoriesGrid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
