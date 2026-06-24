@@ -1,83 +1,95 @@
-// src/Components/SideMenu/SideMenu.jsx (Actualizado)
+// src/Components/SideMenu/SideMenu.jsx
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // 💡 Importar Link y useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './SideMenu.module.css';
 
-const SideMenu = () => {
+const SideMenu = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
         if (window.confirm('¿Estás seguro que deseas cerrar sesión?')) {
             localStorage.removeItem('token');
             localStorage.removeItem('usuario');
-            navigate('/Administracion'); // Redirigir al login
+            navigate('/Administracion');
         }
     };
 
+    const handleLink = () => {
+        // Cierra el menú en móvil al navegar
+        if (onClose) onClose();
+    };
+
     return (
-        // 💡 Contenedor principal del menú lateral
-        <nav className={styles.sideMenu}>
-            
-            {/* 💡 Sección del Logo/Título del Dashboard */}
+        <nav className={`${styles.sideMenu} ${isOpen ? styles.sideMenuOpen : ''}`}>
+
+            {/* Header con botón de cierre en móvil */}
             <div className={styles.header}>
                 <span className={styles.logo}>⚙️ Panel ADSO</span>
+                <button
+                    className={styles.closeBtn}
+                    onClick={onClose}
+                    aria-label="Cerrar menú"
+                >
+                    ✕
+                </button>
             </div>
 
             <div className={styles.menuGroups}>
-                
-                {/* 0. Grupo: Navegación */}
+
+                {/* 0. Navegación */}
                 <div className={styles.menuGroup}>
                     <span className={styles.menuTitle}>Navegación</span>
                     <ul className={styles.sideMenuList}>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/" className={styles.menuLink}>🏠 Volver a la Tienda</Link>
+                            <Link to="/" className={styles.menuLink} onClick={handleLink}>🏠 Volver a la Tienda</Link>
+                        </li>
+                        <li className={styles.sideMenuItem}>
+                            <Link to="/admin" className={styles.menuLink} onClick={handleLink}>🏡 Inicio del Panel</Link>
                         </li>
                     </ul>
                 </div>
 
-                {/* 1. Grupo: Gestión de Productos */}
+                {/* 1. Gestión de Productos */}
                 <div className={styles.menuGroup}>
                     <span className={styles.menuTitle}>Gestión de Productos</span>
                     <ul className={styles.sideMenuList}>
-                        {/* Usar Link para navegación */}
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/BuscarProducto" className={styles.menuLink}>Buscar Producto</Link>
+                            <Link to="/admin/BuscarProducto" className={styles.menuLink} onClick={handleLink}>🔍 Buscar Producto</Link>
                         </li>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/AgregarProducto" className={styles.menuLink}>Agregar Producto</Link>
+                            <Link to="/admin/AgregarProducto" className={styles.menuLink} onClick={handleLink}>➕ Agregar Producto</Link>
                         </li>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/EditarProducto" className={styles.menuLink}>Editar Producto</Link>
+                            <Link to="/admin/EditarProducto" className={styles.menuLink} onClick={handleLink}>✏️ Editar Producto</Link>
                         </li>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/EliminarProducto" className={styles.menuLink}>Eliminar Producto</Link>
+                            <Link to="/admin/EliminarProducto" className={styles.menuLink} onClick={handleLink}>🗑️ Eliminar Producto</Link>
                         </li>
                     </ul>
                 </div>
 
-                {/* 2. Grupo: Estadísticas */}
+                {/* 2. Estadísticas */}
                 <div className={styles.menuGroup}>
                     <span className={styles.menuTitle}>Estadísticas</span>
                     <ul className={styles.sideMenuList}>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/Ventas" className={styles.menuLink}>Ventas</Link>
+                            <Link to="/admin/Ventas" className={styles.menuLink} onClick={handleLink}>📊 Ventas</Link>
                         </li>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/Usuarios" className={styles.menuLink}>Usuarios</Link>
+                            <Link to="/admin/Usuarios" className={styles.menuLink} onClick={handleLink}>👥 Usuarios</Link>
                         </li>
                     </ul>
                 </div>
-                
-                {/* 3. Grupo: Configuración y Salir (Alineado al final) */}
+
+                {/* 3. Configuración */}
                 <div className={styles.menuGroup}>
-                    <span className={styles.menuTitle}>Configuración</span> 
+                    <span className={styles.menuTitle}>Configuración</span>
                     <ul className={styles.sideMenuList}>
                         <li className={styles.sideMenuItem}>
-                            <Link to="/admin/Perfil" className={styles.menuLink}>Perfil</Link>
+                            <Link to="/admin/Perfil" className={styles.menuLink} onClick={handleLink}>👤 Perfil</Link>
                         </li>
-                        {/* Botón de Cerrar Sesión con lógica */}
-                        <li 
+                        <li
                             className={`${styles.sideMenuItem} ${styles.logout}`}
                             onClick={handleLogout}
                         >

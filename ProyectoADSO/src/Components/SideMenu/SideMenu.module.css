@@ -1,52 +1,67 @@
 /* src/Components/SideMenu/SideMenu.module.css */
 
-/* 1. Contenedor Principal: Fijo y de Pantalla Completa */
 .sideMenu {
-    /* 💡 Clave para que esté SIEMPRE visible */
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* Ancho estándar para sidebars */
-    height: 100vh; /* Ocupa el 100% de la altura de la ventana */
-    background-color: #1b1b1b; /* Color oscuro neutro (coincide con Header) */
-    color: #ffffff; /* Texto claro */
+    width: 250px;
+    height: 100vh;
+    background-color: #1b1b1b;
+    color: #ffffff;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
     padding: 20px 0;
-    
     display: flex;
     flex-direction: column;
     z-index: 1000;
+    transition: transform 0.3s ease;
 }
 
-/* 2. Encabezado / Logo */
 .header {
     padding: 0 20px 20px 20px;
-    border-bottom: 1px solid #404040; /* Línea separadora */
+    border-bottom: 1px solid #404040;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
-    color: #ffffff;
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* 3. Contenedor de Grupos de Menú */
+/* Botón cerrar: solo visible en móvil */
+.closeBtn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.closeBtn:hover {
+    background: #2d2d2d;
+    color: #fff;
+}
+
 .menuGroups {
-    flex-grow: 1; /* Permite que el contenido se estire */
-    overflow-y: auto; /* Permite scroll si hay muchos elementos */
+    flex-grow: 1;
+    overflow-y: auto;
     padding: 0 20px;
 }
 
-/* 4. Título de la Sección */
 .menuTitle {
-    display: block; /* Asegura que ocupe su propia línea */
+    display: block;
     font-size: 0.75rem;
     font-weight: 700;
-    color: #6b7280; /* Texto de sección más oscuro */
+    color: #6b7280;
     text-transform: uppercase;
     margin-top: 24px;
     margin-bottom: 8px;
@@ -54,50 +69,60 @@
     letter-spacing: 0.05em;
 }
 
-/* 5. Lista de Elementos (ul) */
 .sideMenuList {
-    list-style: none; /* Quita los puntos de la lista */
+    list-style: none;
     padding: 0;
     margin: 0;
 }
 
-/* 6. Item de la Lista (li) */
 .sideMenuItem {
-    /* Padding y margen para el item */
     margin: 4px 0;
 }
 
-/* 7. Estilo del Enlace (Link) */
 .menuLink {
-    display: block; /* Ocupa todo el ancho del li */
+    display: block;
     padding: 10px 15px;
-    text-decoration: none; /* Quita el subrayado */
+    text-decoration: none;
     color: #b0b0b0;
     font-size: 0.95rem;
-    border-radius: 8px; /* Bordes redondeados al hacer hover */
+    border-radius: 8px;
     transition: all 0.2s ease;
     font-weight: 500;
 }
 
-/* Efecto Hover */
 .menuLink:hover {
-    background-color: #2d2d2d; /* Color de fondo al pasar el ratón */
+    background-color: #2d2d2d;
     color: #ffffff;
     transform: translateX(4px);
 }
 
-/* Estilo especial para Cerrar Sesión */
 .logout {
-    color: #ef4444; /* Color de alerta/salir */
+    color: #ef4444;
     margin-top: 15px;
-    padding: 10px 15px; /* Padding directo al li para el clic */
+    padding: 10px 15px;
     border-top: 1px solid #404040;
     cursor: pointer;
     border-radius: 8px;
     transition: all 0.2s ease;
     font-weight: 500;
 }
+
 .logout:hover {
     background-color: rgba(239, 68, 68, 0.15);
     color: #ef4444;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .sideMenu {
+        transform: translateX(-100%);
+    }
+
+    .sideMenuOpen {
+        transform: translateX(0);
+    }
+
+    .closeBtn {
+        display: block;
+    }
 }

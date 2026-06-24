@@ -1,24 +1,63 @@
-/* Dashboard Layout - Sistema de Inventario de Instrumentos Musicales */
+/* Dashboard Layout */
 
 .dashboardContainer {
     display: flex;
     min-height: 100vh;
-    /* background: #f9fafb;  */
+    position: relative;
 }
 
 .mainContent {
-    margin-left: 250px; /* Espacio para el SideMenu fijo */
+    margin-left: 250px;
     flex: 1;
-    padding:2rem;
+    padding: 2rem;
     width: calc(100% - 250px);
-    /* background: #2d2d2d;  */
+    background: #111827;
+    min-height: 100vh;
+    color: #f9fafb;
 }
 
-/* Responsive */
+/* Botón hamburguesa: oculto en escritorio */
+.hamburgerBtn {
+    display: none;
+    background: #2d2d2d;
+    border: 1px solid #404040;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    transition: background 0.2s;
+    line-height: 1;
+}
+
+.hamburgerBtn:hover {
+    background: #3f3f46;
+}
+
+/* Overlay oscuro para cerrar el menú */
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
 @media (max-width: 768px) {
     .mainContent {
         margin-left: 0;
         width: 100%;
         padding: 1rem;
+    }
+
+    .hamburgerBtn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .overlay {
+        display: block;
     }
 }

@@ -25,6 +25,7 @@ import Usuarios from './Pages/AdministracionPages/Usuarios/Usuarios.jsx';
 import Perfil from './Pages/AdministracionPages/Perfil/Perfil.jsx';
 import Cart from './Components/Cart/Cart.jsx';
 import Checkout from './Pages/Checkout.jsx';
+import AdminHome from './Pages/AdministracionPages/AdminHome/AdminHome.jsx';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           
           {/* 3. RUTAS PROTEGIDAS/DASHBOARD */}
           <Route path='/admin' element={<Dashboard />}>
+              <Route index element={<AdminHome />} />
               <Route path='BuscarProducto' element={<BuscarProducto />}/>
               <Route path='EditarProducto' element={<EditarProducto />}/>
               <Route path='EliminarProducto' element={<EliminarProducto />}/>

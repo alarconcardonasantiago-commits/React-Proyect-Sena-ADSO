@@ -1,0 +1,148 @@
+/* AdminHome.module.css */
+
+.container {
+    padding: 0.5rem 0;
+}
+
+.welcome {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.welcomeIcon {
+    font-size: 3rem;
+    line-height: 1;
+    animation: wave 2s ease-in-out infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    25%       { transform: rotate(-8deg); }
+    75%       { transform: rotate(8deg); }
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #f9fafb;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    color: #9ca3af;
+    margin: 0.25rem 0 0 0;
+}
+
+.hint {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin: 1.5rem 0 1.25rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+/* Grid de tarjetas */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1.5rem 1.25rem;
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Barra de acento en la parte superior */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent, #4f8ef7);
+    border-radius: 16px 16px 0 0;
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+}
+
+.card:hover::before {
+    transform: scaleX(1);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent, #4f8ef7);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    background: #263040;
+}
+
+.cardEmoji {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.cardLabel {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f9fafb;
+}
+
+.cardDesc {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    line-height: 1.4;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .card {
+        padding: 1.25rem 1rem;
+    }
+
+    .cardEmoji {
+        font-size: 1.6rem;
+    }
+
+    .cardLabel {
+        font-size: 0.9rem;
+    }
+
+    .cardDesc {
+        display: none; /* Ocultar descripción en pantallas muy pequeñas */
+    }
+}
+
+@media (max-width: 400px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
