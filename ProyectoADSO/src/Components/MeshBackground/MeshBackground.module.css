@@ -1,0 +1,105 @@
+/* src/Components/MeshBackground/MeshBackground.module.css */
+
+/*
+  Mesh Gradient Oscuro animado con scroll.
+  Usa la variable --scroll-y (0-1) para desplazar los orbs
+  a medida que el usuario hace scroll.
+*/
+
+.meshWrapper {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    background: #080c14;
+    pointer-events: none;
+}
+
+/* Orb base */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.45;
+    will-change: transform;
+}
+
+/* Orb 1 — azul índigo, arriba-izquierda */
+.orb1 {
+    width: 70vw;
+    height: 70vw;
+    background: radial-gradient(circle, #1a3a6b 0%, transparent 70%);
+    top: calc(-20% + var(--scroll-y, 0) * -25%);
+    left: -20%;
+    animation: floatA 14s ease-in-out infinite alternate;
+}
+
+/* Orb 2 — violeta, arriba-derecha */
+.orb2 {
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, #2d1b4e 0%, transparent 70%);
+    top: calc(5% + var(--scroll-y, 0) * 20%);
+    right: -15%;
+    animation: floatB 18s ease-in-out infinite alternate;
+    opacity: 0.38;
+}
+
+/* Orb 3 — cyan muy oscuro, centro-fondo */
+.orb3 {
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, #0a2a3a 0%, transparent 70%);
+    top: calc(40% + var(--scroll-y, 0) * 15%);
+    left: 20%;
+    animation: floatC 20s ease-in-out infinite alternate;
+    opacity: 0.4;
+}
+
+/* Orb 4 — azul marino, esquina inferior-derecha */
+.orb4 {
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, #0f2340 0%, transparent 70%);
+    bottom: calc(-10% + var(--scroll-y, 0) * -15%);
+    right: -5%;
+    animation: floatD 16s ease-in-out infinite alternate;
+    opacity: 0.35;
+}
+
+/* Orb 5 — teal, izquierda media */
+.orb5 {
+    width: 40vw;
+    height: 40vw;
+    background: radial-gradient(circle, #0d2e2e 0%, transparent 70%);
+    top: calc(55% + var(--scroll-y, 0) * -10%);
+    left: -10%;
+    animation: floatA 22s ease-in-out infinite alternate-reverse;
+    opacity: 0.3;
+}
+
+/* Ruido sutil encima para dar textura (opcional, muy sutil) */
+.noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.03;
+}
+
+/* Animaciones de flotado */
+@keyframes floatA {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(5vw, 4vh) scale(1.08); }
+}
+@keyframes floatB {
+    from { transform: translate(0, 0) scale(1.05); }
+    to   { transform: translate(-4vw, 6vh) scale(0.95); }
+}
+@keyframes floatC {
+    from { transform: translate(0, 0) scale(1); }
+    to   { transform: translate(3vw, -5vh) scale(1.1); }
+}
+@keyframes floatD {
+    from { transform: translate(0, 0) scale(0.95); }
+    to   { transform: translate(-6vw, -4vh) scale(1.05); }
+}

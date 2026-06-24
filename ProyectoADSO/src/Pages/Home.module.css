@@ -8,10 +8,9 @@
 .container {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, #0d0d0d, #1a1a2e, #16213e, #0f3460, #1a1a2e, #0d0d0d);
-    background-size: 400% 400%;
-    animation: gradientShift 18s ease infinite;
+    background: transparent;
     padding-bottom: 4rem;
+    position: relative;
 }
 
 .heroSection {

@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import ProductCard from '../Components/ProductCard/ProductCard'
 import SearchBar from '../Components/SearchBar/SearchBar'
 import ProductModal from '../Components/ProductModal/ProductModal'
+import MeshBackground from '../Components/MeshBackground/MeshBackground.jsx'
+import useMeshScroll from '../hooks/useMeshScroll.js'
 import styles from './Productos.module.css'
 import { useCart } from '../context/CartContext'
 
@@ -15,6 +17,7 @@ const Productos = () => {
   const [selectedCategory, setSelectedCategory] = useState('Todos')
   
   const { addToCart } = useCart()
+  useMeshScroll()
   
   // Pagination State
   const [currentPage, setCurrentPage] = useState(1)
@@ -63,7 +66,7 @@ const Productos = () => {
       setError(null)
 
       const spinnerTimer = setTimeout(() => setShowSpinner(true), 400)
-      const BASE = import.meta.env.VITE_API_URL || 'https://api-inventario-onxl.onrender.com/api'
+      const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
       
       // Siempre usamos /buscar ya que soporta todos los filtros y paginación global
       let url = `${BASE}/productos/buscar?page=${page}&limit=${PRODUCTS_PER_PAGE}`
@@ -174,6 +177,7 @@ const Productos = () => {
 
   return (
     <div className={styles.page}>
+      <MeshBackground />
       {/* 🔍 Barra de búsqueda arriba */}
       <div className={styles.searchSection}>
         <SearchBar onSearch={handleSearch} placeholder="Buscar productos..." delay={500} />
@@ -214,7 +218,7 @@ const Productos = () => {
           visibleProducts.map((p) => (
             <ProductCard
               key={p.id_producto}
-              productImage="https://placehold.co/300"
+              productImage={p.imagen || 'https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=600&q=80'}
               productName={p.nombre}
               productDescription={p.tipo || 'Sin descripción'}
               productPrice={p.precio}

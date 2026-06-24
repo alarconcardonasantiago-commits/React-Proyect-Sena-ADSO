@@ -4,6 +4,8 @@ import Carousel from '../Components/Carousel/Carousel.jsx';
 import HomeProductCard from '../Components/HomeProductCard/HomeProductCard.jsx';
 import CategoryCard from '../Components/CategoryCard/CategoryCard.jsx';
 import ProductModal from '../Components/ProductModal/ProductModal.jsx';
+import MeshBackground from '../Components/MeshBackground/MeshBackground.jsx';
+import useMeshScroll from '../hooks/useMeshScroll.js';
 import { fetchPublic } from '../utils/api.js';
 import styles from './Home.module.css';
 
@@ -19,6 +21,7 @@ function Home() {
     const [popularProducts, setPopularProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    useMeshScroll();
 
     useEffect(() => {
         const loadPopularProducts = async () => {
@@ -49,6 +52,7 @@ function Home() {
 
     return (
         <div className={styles.container}>
+            <MeshBackground />
             <div className={styles.heroSection}>
                 <Carousel />
             </div>
