@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styles from './EditarProducto.module.css';
 import { fetchWithAuth } from '../../../utils/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const EditarProducto = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [productos, setProductos] = useState([]);
     const [selectedProductoId, setSelectedProductoId] = useState('');
     const [loading, setLoading] = useState(false);
@@ -28,7 +29,16 @@ const EditarProducto = () => {
 
     // Cargar lista de productos al montar
     useEffect(() => {
-        fetchProductos();
+        const init = async () => {
+            await fetchProductos();
+            if (location.state && location.state.productoId) {
+                // Seleccionar el producto que viene en el state (desde BuscarProducto)
+                setSelectedProductoId(location.state.productoId.toString());
+                // Disparar la carga de ese producto
+                handleProductoSelect({ target: { value: location.state.productoId.toString() } }, null);
+            }
+        };
+        init();
     }, []);
 
     const fetchProductos = async () => {
@@ -65,7 +75,11 @@ const EditarProducto = () => {
             return;
         }
 
-        const producto = productos.find(p => p.id_producto === parseInt(productoId));
+        // Asegurarse de que usemos el ID correcto si estamos iniciando desde useEffect o onChange
+        const prodId = e ? e.target.value : selectedProductoId;
+        
+        // Si el estado de productos aún no carga y venimos del state, no hacemos nada todavía
+        const producto = productos.find(p => p.id_producto === parseInt(prodId));
         
         if (producto) {
             setFormData({
@@ -90,15 +104,8 @@ const EditarProducto = () => {
     };
 
     const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setImageFile(file);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
+        const url = e.target.value;
+        setImagePreview(url);
     };
 
     const handleSubmit = async (e) => {
@@ -326,23 +333,24 @@ const EditarProducto = () => {
                                         <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
                                     ) : (
                                         <div className={styles.imagePlaceholder}>
-                                            <span className={styles.uploadIcon}>📷</span>
+                                            <span className={styles.uploadIcon}>🔗</span>
                                             <p>Sin imagen</p>
                                         </div>
                                     )}
                                 </div>
                                 <input
-                                    type="file"
+                                    type="url"
                                     id="imagen"
                                     name="imagen"
-                                    accept="image/*"
+                                    value={imagePreview || ''}
                                     onChange={handleImageChange}
-                                    className={styles.fileInput}
+                                    placeholder="https://ejemplo.com/imagen.jpg"
+                                    className={styles.urlInput}
                                     disabled={loading}
                                 />
-                                <label htmlFor="imagen" className={styles.fileLabel}>
-                                    📁 Cambiar Imagen
-                                </label>
+                                <p className={styles.helperText}>
+                                    Pega un enlace de imagen (Unsplash, Imgur, etc.)
+                                </p>
                             </div>
 
                             <div className={styles.infoBox}>

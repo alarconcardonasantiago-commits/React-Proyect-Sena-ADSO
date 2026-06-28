@@ -72,10 +72,10 @@ function Home() {
                                 image={product.imagen || 'https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&q=80'}
                                 title={product.nombre}
                                 price={formatPrice(product.precio)}
-                                onClick={() => setSelectedProduct({ 
-                                    id: product.id_producto,
-                                    title: product.nombre, 
-                                    price: formatPrice(product.precio),
+                                onClick={() => setSelectedProduct({
+                                    ...product,
+                                    // Mapeo fallback visual para ProductModal si lo necesita
+                                    title: product.nombre,
                                     image: product.imagen || 'https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=800&q=80',
                                     content: product.descripcion || `${product.nombre} — disponible en Melodía Instrumental.`
                                 })}

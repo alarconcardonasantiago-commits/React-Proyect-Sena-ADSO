@@ -30,15 +30,8 @@ const AgregarProducto = () => {
     };
 
     const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setImageFile(file);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(file);
-        }
+        const url = e.target.value;
+        setImagePreview(url); // Directamente guardamos la URL como string
     };
 
     const handleSubmit = async (e) => {
@@ -57,7 +50,7 @@ const AgregarProducto = () => {
                 stock: parseInt(formData.stock), // Campo "stock" en la BD
                 descripcion: formData.descripcion,
                 estado: formData.estado,
-                // Si hay imagen, enviarla como base64 o manejar con FormData según tu backend
+                // Ahora enviamos directamente el string de la URL
                 ...(imagePreview && { imagen: imagePreview })
             };
 
@@ -252,23 +245,24 @@ const AgregarProducto = () => {
                                     <img src={imagePreview} alt="Preview" className={styles.imagePreview} />
                                 ) : (
                                     <div className={styles.imagePlaceholder}>
-                                        <span className={styles.uploadIcon}>📷</span>
-                                        <p>Sube una imagen del instrumento</p>
+                                        <span className={styles.uploadIcon}>🔗</span>
+                                        <p>La vista previa aparecerá aquí</p>
                                     </div>
                                 )}
                             </div>
                             <input
-                                type="file"
+                                type="url"
                                 id="imagen"
                                 name="imagen"
-                                accept="image/*"
+                                value={imagePreview || ''}
                                 onChange={handleImageChange}
-                                className={styles.fileInput}
+                                placeholder="https://ejemplo.com/imagen.jpg"
+                                className={styles.urlInput}
                                 disabled={loading}
                             />
-                            <label htmlFor="imagen" className={styles.fileLabel}>
-                                📁 Seleccionar Archivo
-                            </label>
+                            <p className={styles.helperText}>
+                                Puedes usar enlaces de imágenes de sitios como Unsplash, Imgur o tu propia galería online.
+                            </p>
                         </div>
 
                         <div className={styles.infoBox}>

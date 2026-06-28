@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './BuscarProducto.module.css';
 import { fetchPublic } from '../../../utils/api';
+import ProductModal from '../../../Components/ProductModal/ProductModal';
 
 const BuscarProducto = () => {
+    const navigate = useNavigate();
     const [productos, setProductos] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('Todos');
@@ -64,14 +67,14 @@ const BuscarProducto = () => {
     });
 
     const handleViewProduct = (product) => {
-    // Map product data to modal format
-    setSelectedProduct({
-        image: "https://placehold.co/400", // Placeholder for now as API might not return image URL yet
-        title: product.nombre,
-        price: `$${product.precio.toLocaleString()}`,
-        content: product.descripcion || product.tipo || 'Sin descripción disponible.'
-    })
-  }
+        // Map product data to modal format
+        setSelectedProduct({
+            image: product.imagen || "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=600&q=80",
+            title: product.nombre,
+            price: formatPrice(product.precio),
+            content: product.descripcion || product.tipo || 'Sin descripción disponible.'
+        })
+    }
 
   const handleCloseModal = () => {
     setSelectedProduct(null)
@@ -148,8 +151,18 @@ const BuscarProducto = () => {
                                 <p className={styles.stock}>Stock: {producto.stock || 0}</p>
                             </div>
                             <div className={styles.cardActions}>
-                                <button className={styles.btnEdit}>✏️ Editar</button>
-                                <button className={styles.btnView}>👁️ Ver</button>
+                                <button 
+                                    className={styles.btnEdit}
+                                    onClick={() => navigate('/admin/EditarProducto', { state: { productoId: producto.id_producto } })}
+                                >
+                                    ✏️ Editar
+                                </button>
+                                <button 
+                                    className={styles.btnView}
+                                    onClick={() => handleViewProduct(producto)}
+                                >
+                                    👁️ Ver
+                                </button>
                             </div>
                         </div>
                     ))}
@@ -169,6 +182,9 @@ const BuscarProducto = () => {
                     <span>Cargando productos...</span>
                 </div>
             )}
+
+            {/* Modal para ver producto completo */}
+            <ProductModal product={selectedProduct} onClose={handleCloseModal} />
         </div>
     );
 }
