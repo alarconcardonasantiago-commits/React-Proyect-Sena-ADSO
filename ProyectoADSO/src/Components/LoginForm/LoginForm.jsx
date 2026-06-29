@@ -17,13 +17,17 @@ const LoginForm = () => {
     setSuccess(false);
     setLoading(true);
 
+    // Limpiar sesión previa para evitar datos residuales
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+
     try {
       // ✅ Usar variable de entorno para la URL de la API
       const API = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
       const res = await fetch(`${API}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo, contraseña })
+        body: JSON.stringify({ correo: correo.trim(), contraseña })
       });
 
       const data = await res.json();

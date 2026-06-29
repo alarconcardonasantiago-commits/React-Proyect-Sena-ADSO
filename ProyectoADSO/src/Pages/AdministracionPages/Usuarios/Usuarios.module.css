@@ -353,6 +353,8 @@
 
 .formGroup input, .formGroup select {
     padding: 0.75rem;
+    box-sizing: border-box;
+    width: 100%;
     border-radius: 8px;
     border: 1px solid #404040;
     background: #1f1f1f;

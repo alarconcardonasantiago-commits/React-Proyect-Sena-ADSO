@@ -85,10 +85,11 @@ const Usuarios = () => {
         e.preventDefault();
         try {
             setLoading(true);
+            const payload = { ...formData, correo: formData.correo.trim() };
             // Intentamos llamar a /usuarios o /auth/register
             await fetchWithAuth('/usuarios', {
                 method: 'POST',
-                body: JSON.stringify(formData)
+                body: JSON.stringify(payload)
             });
             setSuccessMessage("Usuario agregado correctamente");
             setShowAddModal(false);
