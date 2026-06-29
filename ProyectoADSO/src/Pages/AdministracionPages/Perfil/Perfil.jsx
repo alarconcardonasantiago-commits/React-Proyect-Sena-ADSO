@@ -8,18 +8,42 @@ const Perfil = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
     
-    // Obtener datos del usuario desde localStorage
-    const [formData, setFormData] = useState(() => {
-        const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-        return {
-            nombre: usuario.nombre || usuario.name || '',
-            email: usuario.correo || usuario.email || '',
-            telefono: usuario.telefono || '',
-            cargo: usuario.cargo || usuario.rol || '',
-            departamento: usuario.departamento || '',
-            fechaIngreso: usuario.fecha_ingreso || usuario.fecha_registro || ''
-        };
+    // Obtener ID del usuario desde localStorage
+    const usuarioLocal = JSON.parse(localStorage.getItem('usuario') || '{}');
+    const usuarioId = usuarioLocal.id || usuarioLocal.id_usuario;
+
+    const [formData, setFormData] = useState({
+        nombre: usuarioLocal.nombre || '',
+        email: usuarioLocal.correo || '',
+        rol: usuarioLocal.rol || '',
+        estado: '',
+        fechaIngreso: ''
     });
+
+    useEffect(() => {
+        if (usuarioId) {
+            fetchUserData();
+        }
+    }, [usuarioId]);
+
+    const fetchUserData = async () => {
+        try {
+            setLoading(true);
+            const data = await fetchWithAuth(`/usuarios/${usuarioId}`);
+            setFormData({
+                nombre: data.nombre || '',
+                email: data.correo || '',
+                rol: data.rol || '',
+                estado: data.estado || '',
+                fechaIngreso: data.fecha_creacion ? new Date(data.fecha_creacion).toLocaleDateString() : ''
+            });
+        } catch (err) {
+            console.error('Error fetching user data:', err);
+            setError('No se pudieron cargar los datos del perfil.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const [passwordData, setPasswordData] = useState({
         currentPassword: '',
@@ -50,28 +74,19 @@ const Perfil = () => {
         setSuccess(false);
 
         try {
-            const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
-            const usuarioId = usuario.id || usuario.id_usuario;
-
-            if (!usuarioId) {
-                throw new Error('No se encontró el ID del usuario');
-            }
-
             // PUT al endpoint de usuarios
             const result = await fetchWithAuth(`/usuarios/${usuarioId}`, {
                 method: 'PUT',
                 body: JSON.stringify({
                     nombre: formData.nombre,
-                    email: formData.email,
-                    telefono: formData.telefono,
-                    departamento: formData.departamento
+                    correo: formData.email
                 })
             });
 
             console.log('✅ Perfil actualizado:', result);
             
             // Actualizar localStorage
-            const updatedUsuario = { ...usuario, ...formData };
+            const updatedUsuario = { ...usuarioLocal, nombre: formData.nombre, correo: formData.email };
             localStorage.setItem('usuario', JSON.stringify(updatedUsuario));
             
             setSuccess(true);
@@ -158,20 +173,16 @@ const Perfil = () => {
                             <span className={styles.infoValue}>{formData.email || 'No especificado'}</span>
                         </div>
                         <div className={styles.infoItem}>
-                            <span className={styles.infoLabel}>Teléfono:</span>
-                            <span className={styles.infoValue}>{formData.telefono || 'No especificado'}</span>
+                            <span className={styles.infoLabel}>Rol:</span>
+                            <span className={styles.infoBadge}>{formData.rol || 'Usuario'}</span>
                         </div>
                         <div className={styles.infoItem}>
-                            <span className={styles.infoLabel}>Cargo:</span>
-                            <span className={styles.infoBadge}>{formData.cargo || 'Usuario'}</span>
-                        </div>
-                        <div className={styles.infoItem}>
-                            <span className={styles.infoLabel}>Departamento:</span>
-                            <span className={styles.infoValue}>{formData.departamento || 'No especificado'}</span>
+                            <span className={styles.infoLabel}>Estado:</span>
+                            <span className={styles.infoValue}>{formData.estado || 'Activo'}</span>
                         </div>
                         {formData.fechaIngreso && (
                             <div className={styles.infoItem}>
-                                <span className={styles.infoLabel}>Fecha de Ingreso:</span>
+                                <span className={styles.infoLabel}>Miembro desde:</span>
                                 <span className={styles.infoValue}>{formData.fechaIngreso}</span>
                             </div>
                         )}
@@ -214,30 +225,6 @@ const Perfil = () => {
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        disabled={loading}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="telefono">Teléfono</label>
-                                    <input
-                                        type="tel"
-                                        id="telefono"
-                                        name="telefono"
-                                        value={formData.telefono}
-                                        onChange={handleChange}
-                                        disabled={loading}
-                                    />
-                                </div>
-
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="departamento">Departamento</label>
-                                    <input
-                                        type="text"
-                                        id="departamento"
-                                        name="departamento"
-                                        value={formData.departamento}
-                                        onChange={handleChange}
                                         disabled={loading}
                                     />
                                 </div>

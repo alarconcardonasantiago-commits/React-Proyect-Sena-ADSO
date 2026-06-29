@@ -109,6 +109,8 @@
 .infoValue {
     color: #ffffff;
     font-weight: 600;
+    text-align: right;
+    word-break: break-all;
 }
 
 .infoBadge {
@@ -118,6 +120,7 @@
     border-radius: 12px;
     font-size: 0.85rem;
     font-weight: 600;
+    text-align: right;
 }
 
 .btnEdit {

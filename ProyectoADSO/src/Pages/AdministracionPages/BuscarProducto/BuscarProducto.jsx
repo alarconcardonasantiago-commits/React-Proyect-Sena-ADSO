@@ -71,7 +71,7 @@ const BuscarProducto = () => {
         setSelectedProduct({
             image: product.imagen || "https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?w=600&q=80",
             title: product.nombre,
-            price: formatPrice(product.precio),
+            price: product.precio,
             content: product.descripcion || product.tipo || 'Sin descripción disponible.'
         })
     }
