@@ -65,3 +65,5 @@ function App() {
   )
 }
 export default App
+
+// esto es un ejemplo de cambio de arhcivo para evidencia de uso de git
